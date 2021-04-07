@@ -6,7 +6,7 @@ This is the final Project of IC Design LAB, 2021 Spring.
 
 Fast Fourier transform can be used to do the fourier transform of decimal signal in short time, which is one important part of digital signal processing. Relevant application includes Speech processing, video processing, Spectrum analying ...etc. However, it need a great amount of computation. So, we can use hardware to design the processor for FFT.
 
-### 32-point DIF Radix-2 FFT ###
+## 32-point DIF Radix-2 FFT ##
 
 Radix-2 FFT is the algorithm that cut DFT into small computation units. (cut length N DFT into two length N/2 DFT). Using Radix-2 FFT with butterfly computation unit can improve the time complexity from O(N^2) to O(nlgn). There are two ways to do the cut: DIT(decimation in time) and DIF(decimation in frequency). We decided to use the latter. 
 
