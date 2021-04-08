@@ -10,29 +10,34 @@ for i = 1:32
     y(i) = dft_32(x, i);
 end
 
+%{
 figure;
-subplot(3,1,1);
+subplot(2,1,1);
 plot(f,real(y));
-subplot(3,1,2);
+title('Real Part');
+subplot(2,1,2);
 plot(f,imag(y));
-subplot(3,1,3);
-plot(f,abs(y));
+title('Iamginary Part');
+sgtitle('Radix-II FFT');
+%}
 
 % matlab fft
 X = fft(x);
 
+%{
 figure;
-subplot(3,1,1);
+subplot(2,1,1);
 plot(f,real(X));
-subplot(3,1,2);
+title('Real Part');
+subplot(2,1,2);
 plot(f,imag(X));
-subplot(3,1,3);
-plot(f,abs(X));
-
-q = quantizer('double');
-x_bin = num2bin(q,x);
+title('Imaginary Part');
+sgtitle('Matlab FFT');
+%}
 
 dlmwrite('input_1.txt',x,'\n');
+dlmwrite('output_real_1.txt',real(y),'\n');
+dlmwrite('output_imag_1.txt',imag(y),'\n');
 
 function y = dft_2(x,k)
     y = x(1) * exp(-1i * 2 * pi * k * 0 / 2) + x(2) * exp(-1i * 2 * pi * k * 1 / 2);
