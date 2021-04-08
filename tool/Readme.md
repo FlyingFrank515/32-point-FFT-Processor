@@ -16,6 +16,12 @@
 
 ## python code ##
 
-   input: txt files from matlab
+   command: python floating_to_14bit.py  [input_file_name]
+
+​	input: txt files from matlab containing doubles
 
    output: txt files containing 14 bit fixed-point data
+
+​	ex: python floating_to_14bit input_1.txt
+
+​	The program will read data from "input_1.txt" and output data to a file name "input**_14bit**_1.txt" 

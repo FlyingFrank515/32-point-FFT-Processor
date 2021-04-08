@@ -1,5 +1,6 @@
 from __future__ import division
 import math
+import sys
 
 def twos_comp(x):
     output = ''
@@ -24,22 +25,26 @@ def twos_comp(x):
     output = output + '\n'
     return output
 
-f = open("input_1.txt", "r")
+string_in = sys.argv[1]
+f = open(string_in, "r")
 points = f.read()
+f.close()
 
 # for i in points
 points_list = points.split('\n')
 points_list.pop(-1)
 
-pt_int = []
+
+pt_float = []
 
 for i in points_list:
-    pt_int.append(float(i))
+    pt_float.append(float(i))
 
 pt_final = []
 
-f = open('input_14bit_1', 'w')
-for i in pt_int:
+string_out = string_in[0:-6] + "_14bit" + string_in[-6:]
+f = open(string_out, 'w')
+for i in pt_float:
     pt_final.append(twos_comp(i))
     f.write(pt_final[-1])
 
