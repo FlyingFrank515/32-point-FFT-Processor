@@ -1,6 +1,6 @@
-Tool Usage
+# Tool Usage #
 
-1. matlab code
+## matlab code ##
 
    input: 32-point signal x in line-5, which is based on t from 0 to 31
 
@@ -14,7 +14,7 @@ Tool Usage
 
    In these two files, the data are stored as doubles.
 
-2. python code
+## python code ##
 
    input: txt files from matlab
 
