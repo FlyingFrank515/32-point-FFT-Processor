@@ -4,9 +4,9 @@
 // Combine CTRL16, radix2, SR16
 
 // ===================================================================
-`include "BUTTERFLY_R2.v"
-`include "SR16.v"
 `include "CTRL16.v"
+`include "SR16.v"
+`include "BUTTERFLY_R2.v"
 
 module STAGE1(
     input                   clk,
@@ -15,13 +15,16 @@ module STAGE1(
     input signed [18:0]     data_in_r,
     input signed [18:0]     data_in_i,
 
-    output                  valid_o;
+    output                  valid_o,
     output signed [18:0]    data_out_r,
-    output signed [18:0]    data_out_i,
+    output signed [18:0]    data_out_i
 );
     // Wire Reg declaration
+    reg  [18:0] data_in_r_r, data_in_i_r;
+    reg  valid_i_r;
+    
     wire [1:0] state_bus;
-    wire [8:0] WN_r_bus, WN_i_bus;
+    wire [9:0] WN_r_bus, WN_i_bus;
     wire [18:0] SR_r_bus, SR_i_bus;
     wire [18:0] FB_r_bus, FB_i_bus;
     wire [18:0] data_r_bus, data_i_bus;
@@ -29,10 +32,11 @@ module STAGE1(
     CTRL16 Control_unit(
         .clk(clk),
         .rst(rst),
-        .valid_i(valid_i),
-        .data_in_r(data_in_r),
-        .data_in_i(data_in_i),
+        .valid_i(valid_i_r),
+        .data_in_r(data_in_r_r),
+        .data_in_i(data_in_i_r),
 
+        .valid_o(valid_o),
         .state(state_bus),
         .data_out_r(data_r_bus),
         .data_out_i(data_i_bus),
@@ -59,11 +63,23 @@ module STAGE1(
         .WN_r(WN_r_bus),
         .WN_i(WN_i_bus),
 
-        .valid_o(valid_o),
-        .osut_r(data_out_r),
+        .out_r(data_out_r),
         .out_i(data_out_i),
         .SR_r(SR_r_bus),
         .SR_i(SR_i_bus)
     );
+
+    always@(posedge clk or negedge rst) begin
+        if(!rst) begin
+            data_in_r_r <= 0;
+            data_in_i_r <= 0;
+            valid_i_r <= 0;
+        end
+        else begin
+            data_in_r_r <= data_in_r;
+            data_in_i_r <= data_in_i;
+            valid_i_r <= valid_i;
+        end
+    end
 
 endmodule

@@ -14,7 +14,6 @@ module BUTTERFLY_R2(
     input signed [9:0]          WN_r,
     input signed [9:0]          WN_i,
     
-    output                      valid_o, 
     output reg signed [18:0]    out_r,
     output reg signed [18:0]    out_i,
     output reg signed [18:0]    SR_r,
@@ -44,7 +43,6 @@ module BUTTERFLY_R2(
             IDLE: begin
                 out_r = 0;
                 out_i = 0;
-                valid_o = 0;
                 SR_r = 0;
                 SR_i = 0;
             end
@@ -52,7 +50,6 @@ module BUTTERFLY_R2(
             WAITING: begin
                 out_r = 0;
                 out_i = 0;
-                valid_o = 0;
                 SR_r = A_r;
                 SR_i = A_i;
             end
@@ -60,7 +57,6 @@ module BUTTERFLY_R2(
             FIRST: begin
                 out_r = A_r + B_r;
                 out_i = A_i + B_i;
-                valid_o = 1;
                 SR_r = A_r - B_r;
                 SR_i = A_i - B_i;
             end
@@ -68,7 +64,6 @@ module BUTTERFLY_R2(
             SECOND: begin
                 out_r = tempA[26:8];
                 out_i = tempB[26:8];
-                valid_o = 1;
                 SR_r = 0;
                 SR_i = 0;
             end
@@ -76,7 +71,6 @@ module BUTTERFLY_R2(
             default: begin
                 out_r = 0;
                 out_i = 0;
-                valid_o = 0;
                 SR_r = 0;
                 SR_i = 0;
             end

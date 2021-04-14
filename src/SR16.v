@@ -1,11 +1,11 @@
-module SR_16(
+module SR16(
     input                   clk,
     input                   rst,
     input [18:0]            in_r,
     input [18:0]            in_i,
     
     output [18:0]           out_r,
-    output [18:0]           out_i,
+    output [18:0]           out_i
 );
     // change LENGTH here to set up the length of this shift register
     //=================================================
