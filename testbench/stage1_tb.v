@@ -7,7 +7,7 @@
 
 module STAGE1_tb;
     
-    integer i;
+    integer i, j;
     reg clk, rst, valid, stop;
     reg [18:0] before_ff [0:31];
     reg [18:0] data_in_r;
@@ -34,6 +34,7 @@ module STAGE1_tb;
         valid       = 1'b0;
         stop        = 1'b0;
         i           = 0;
+        j           = 0;
         #2.5 rst=1'b0;         
         #2.5 rst=1'b1;
 
@@ -60,6 +61,13 @@ module STAGE1_tb;
             data_in_r = 0;
             stop = 1;
         end
+    end
+
+    always @(negedge clk)begin
+        if(finish) begin
+            $display("Pattern %0d: Real->%b / Img->%b", j , data_out_r, data_out_i);
+        end
+
     end
 
     always @(posedge stop)begin

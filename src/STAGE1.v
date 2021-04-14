@@ -69,6 +69,7 @@ module STAGE1(
         .SR_i(SR_i_bus)
     );
 
+    // Make sure that all inputs sending into sub-modules are flipfloped.
     always@(posedge clk or negedge rst) begin
         if(!rst) begin
             data_in_r_r <= 0;

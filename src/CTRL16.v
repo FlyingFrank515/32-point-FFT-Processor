@@ -3,10 +3,13 @@
 // 
 // This is control-unit for 1st stage Butterfly unit
 // Function:
-//      1. Determine the input of the butterfly-unit
-//      2. Give the exp(-j*2pi*n/N) to BUtterfly unit
+//      1. Determine the input of the Butterfly unit
+//      2. Give the exp(-j*2pi*n/N) to Butterfly unit
 //      3. Control the input and the mux before/after the shift register
 //
+// Note that data_out is connected to the port A of the Butterfly unit
+//     (flipfloped data_in)
+// 
 // ===================================================================
 module CTRL16(
     input                       clk,
@@ -29,7 +32,7 @@ module CTRL16(
     parameter SECOND    = 2'b10;
     parameter WAITING   = 2'b11;
 
-    // Wire Reg declaration
+    // Wire-Reg declaration
     reg [8:0] count, next_count;
     reg [1:0] next_state;
     reg next_valid_o;
@@ -51,18 +54,21 @@ module CTRL16(
                 next_count = count + 1;
                 if(count == 16) begin
                     next_state = FIRST;
+                    // After 16 cycles, we are going to output g
                     next_valid_o = 1;
                 end
             end
             FIRST: begin
                 next_count = count + 1;
                 if(count == 32) begin
+                    // After 32 cycles, we are going to output h
                     next_state = SECOND;
                 end
             end
             SECOND: begin
                 next_count = count + 1;
                 if(count == 48) begin
+                    // After 48 cycles, all data have been outputed
                     next_state = IDLE;
                     next_valid_o = 0;
                 end
@@ -70,7 +76,7 @@ module CTRL16(
         endcase
     end
 
-    // // Combinational part - WN logic
+    // Combinational part - WN logic
     always@(*) begin
         // Send the exp(-j*2*pi*n/16) where n go from 0 to 15
         // format: 10bit (2 integer, 8 fractional)

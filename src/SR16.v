@@ -1,3 +1,9 @@
+// ===================================================================
+// Module: SR16
+// 
+// This is shift register of stage-1. (Used as the single path delay)
+// 
+// ===================================================================
 module SR16(
     input                   clk,
     input                   rst,
