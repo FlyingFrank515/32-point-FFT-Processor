@@ -12,22 +12,22 @@ module STAGE1(
     input                   clk,
     input                   rst,
     input                   valid_i,
-    input signed [18:0]     data_in_r,
-    input signed [18:0]     data_in_i,
+    input signed [15:0]     data_in_r,
+    input signed [15:0]     data_in_i,
 
     output                  valid_o,
-    output signed [18:0]    data_out_r,
-    output signed [18:0]    data_out_i
+    output signed [15:0]    data_out_r,
+    output signed [15:0]    data_out_i
 );
     // Wire Reg declaration
-    reg  [18:0] data_in_r_r, data_in_i_r;
+    reg  [15:0] data_in_r_r, data_in_i_r;
     reg  valid_i_r;
     
     wire [1:0] state_bus;
-    wire [9:0] WN_r_bus, WN_i_bus;
-    wire [18:0] SR_r_bus, SR_i_bus;
-    wire [18:0] FB_r_bus, FB_i_bus;
-    wire [18:0] data_r_bus, data_i_bus;
+    wire [7:0] WN_r_bus, WN_i_bus;
+    wire [15:0] SR_r_bus, SR_i_bus;
+    wire [15:0] FB_r_bus, FB_i_bus;
+    wire [15:0] data_r_bus, data_i_bus;
     
     CTRL16 Control_unit(
         .clk(clk),

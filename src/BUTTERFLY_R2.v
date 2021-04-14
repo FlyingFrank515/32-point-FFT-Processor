@@ -8,21 +8,23 @@
 // Note: Only contain the combinational part, so the next stage should
 // add the flipflop to its input to ensure the existence of full 
 // access time
-//
+// 
+// A, B, out, SR : 10-bit integer, 6-bit fractional
+// WN            : 2-bit  integer, 6-bit fractional
 // ===================================================================
 module BUTTERFLY_R2(
     input [1:0]                 state,
-    input signed [18:0]         A_r,
-    input signed [18:0]         A_i,
-    input signed [18:0]         B_r,
-    input signed [18:0]         B_i,
-    input signed [9:0]          WN_r,
-    input signed [9:0]          WN_i,
+    input signed [15:0]         A_r,
+    input signed [15:0]         A_i,
+    input signed [15:0]         B_r,
+    input signed [15:0]         B_i,
+    input signed [7:0]          WN_r,
+    input signed [7:0]          WN_i,
     
-    output reg signed [18:0]    out_r,
-    output reg signed [18:0]    out_i,
-    output reg signed [18:0]    SR_r,
-    output reg signed [18:0]    SR_i
+    output reg signed [15:0]    out_r,
+    output reg signed [15:0]    out_i,
+    output reg signed [15:0]    SR_r,
+    output reg signed [15:0]    SR_i
 );
     // state parameter
     parameter IDLE      = 2'b00;
@@ -31,8 +33,8 @@ module BUTTERFLY_R2(
     parameter WAITING   = 2'b11;
     
     // Wire-Reg declaration
-    wire signed [29:0] mul13, mul24, mul14, mul23;
-    wire signed [30:0] tempA, tempB;
+    wire signed [24:0] mul13, mul24, mul14, mul23;
+    wire signed [25:0] tempA, tempB;
 
     // Combinational part
     assign mul13 = B_r * WN_r;
@@ -73,8 +75,8 @@ module BUTTERFLY_R2(
             // In second state, multiply delayed-data (h1~hN) with corresponding W (
             // W^0~W^(N-1)/2 and output it
             SECOND: begin
-                out_r = tempA[26:8];
-                out_i = tempB[26:8];
+                out_r = tempA[21:6];
+                out_i = tempB[21:6];
                 SR_r = 0;
                 SR_i = 0;
             end
