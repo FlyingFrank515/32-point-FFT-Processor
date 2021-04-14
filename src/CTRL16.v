@@ -18,8 +18,8 @@ module CTRL16(
     output reg [1:0]            state,
     output reg signed [18:0]    data_out_r,
     output reg signed [18:0]    data_out_i,
-    output reg signed [8:0]     WN_r,
-    output reg signed [8:0]     WN_i,
+    output reg signed [9:0]     WN_r,
+    output reg signed [9:0]     WN_i,
 );
     
     // state parameter
@@ -59,53 +59,71 @@ module CTRL16(
             SECOND: begin
                 next_count = count + 1;
                 case(count)
+                    // Send the exp(-j*2*pi*n/16) where n go from 0 to 15
+                    // format: 10bit (2 integer, 8 fractional)
                     33: begin
-
+                        WN_r = 10'b0100000000;
+                        WN_i = 10'b0000000000;
                     end
                     34: begin
-                        
+                        WN_r = 10'b0011101100;
+                        WN_i = 10'b1110011110;
                     end
                     35: begin
-                        
+                        WN_r = 10'b0010110101;
+                        WN_i = 10'b1101001010;
                     end
                     36: begin
-                        
+                        WN_r = 10'b0001100001;
+                        WN_i = 10'b1100010011;
                     end
                     37: begin
-                        
+                        WN_r = 10'b0000000000;
+                        WN_i = 10'b1100000000;
                     end
                     38: begin
-                        
+                        WN_r = 10'b1110011110;
+                        WN_i = 10'b1100010011;
                     end
                     39: begin
-                        
+                        WN_r = 10'b1101001010;
+                        WN_i = 10'b1101001010;
                     end
                     40: begin
-                        
+                        WN_r = 10'b1100010011;
+                        WN_i = 10'b1110011110;
                     end
                     41: begin
-                        
+                        WN_r = 10'b1100000000;
+                        WN_i = 10'b0000000000;
                     end
                     42: begin
-                        
+                        WN_r = 10'b1100010011;
+                        WN_i = 10'b0001100001;
                     end
                     43: begin
-                        
+                        WN_r = 10'b1101001010;
+                        WN_i = 10'b0010110101;
                     end
                     44: begin
-                        
+                        WN_r = 10'b1110011110;
+                        WN_i = 10'b0011101100;
                     end
                     45: begin
-                        
+                        WN_r = 10'b0000000000;
+                        WN_i = 10'b0100000000;
                     end
                     46: begin
-                        
+                        WN_r = 10'b0001100001;
+                        WN_i = 10'b0011101100;
                     end
                     47: begin
-                        
+                        WN_r = 10'b0010110101;
+                        WN_i = 10'b0010110101;
                     end
                     48: begin
-                        
+                        WN_r = 10'b0011101100;
+                        WN_i = 10'b0001100001;
                     end
                 endcase
                 if(count == 48) begin

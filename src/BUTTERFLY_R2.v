@@ -11,8 +11,8 @@ module BUTTERFLY_R2(
     input signed [18:0]         A_i,
     input signed [18:0]         B_r,
     input signed [18:0]         B_i,
-    input signed [8:0]          WN_r,
-    input signed [8:0]          WN_i,
+    input signed [9:0]          WN_r,
+    input signed [9:0]          WN_i,
     
     output                      valid_o, 
     output reg signed [18:0]    out_r,
@@ -27,8 +27,8 @@ module BUTTERFLY_R2(
     parameter WAITING   = 2'b11;
     
     // Wire Reg declaration
-    wire signed [28:0] mul13, mul24, mul14, mul23;
-    wire signed [29:0] tempA, tempB;
+    wire signed [29:0] mul13, mul24, mul14, mul23;
+    wire signed [30:0] tempA, tempB;
 
     // Combinational part
     assign mul13 = B_r * WN_r;
