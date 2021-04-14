@@ -65,7 +65,8 @@ module STAGE1_tb;
 
     always @(negedge clk)begin
         if(finish) begin
-            $display("Pattern %0d: Real->%b / Img->%b", j , data_out_r, data_out_i);
+            $display("Output %0d: Real->%b / Img->%b", j , data_out_r, data_out_i);
+            j = j + 1;
         end
 
     end
