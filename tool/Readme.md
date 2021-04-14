@@ -16,13 +16,12 @@
 
 ## python code ##
 
-   command: python floating_to_14bit.py  [input_file_name]
-   /python floating_to_19bit.py  [input_file_name]
+   command: python floating_to_8bit.py  [input_file_name]
 
 ​	input: txt files from matlab containing doubles
 
-   output: txt files containing 14/19 bit fixed-point data
+   output: txt files containing 8 bit fixed-point data
 
-​	ex: python floating_to_14bit input_1.txt
+​	ex: python floating_to_8bit input_1.txt
 
-​	The program will read data from "input_1.txt" and output data to a file name "input**_14bit**_1.txt" 
+​	The program will read data from "input_1.txt" and output data to a file name "input**_8bit**_1.txt" 
