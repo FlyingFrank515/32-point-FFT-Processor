@@ -3,17 +3,7 @@
 
 `include "STAGE1.v"             
 
-// module STAGE1(
-//     input                   clk,
-//     input                   rst,
-//     input                   valid_i,
-//     input signed [18:0]     data_in_r,
-//     input signed [18:0]     data_in_i,
-
-//     output                  valid_o;
-//     output signed [18:0]    data_out_r,
-//     output signed [18:0]    data_out_i,
-// );
+// simulation commmand: ncverilog stage1_tb.v +access+r
 
 module STAGE1_tb;
     
