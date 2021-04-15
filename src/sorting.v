@@ -8,9 +8,14 @@ module SORTING(
     output signed [15:0]    result_i[0:31],
 );
 
-integer        i;
-reg            sort, next_sort;
-reg      [4:0] count, next_count;
+integer             i;
+reg                 sort, next_sort;
+reg          [4:0]  count, next_count;
+reg  signed  [15:0] next_out_r[0;31];
+reg  signed  [15:0] next_out_i[0;31];
+reg  signed  [15:0] next_result_r[0;31];
+reg  signed  [15:0] next_result_r[0;31];
+
 count = 5'd0;
 if(start_sorting)sort = 1;
 always@(*) begin
