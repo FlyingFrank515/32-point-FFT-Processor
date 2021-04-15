@@ -2,14 +2,16 @@ t = 0:31;
 f = 0:31;
 
 % NOTE: input range = (-32,32)
-x = cos(4 * t);
+x = 2*sin(4*t) + cos(5*t) + sin(t);
+x = round(x,3);
 y = zeros(1,32);
 
 % radix-2 method
-for i = 1:32
-    y(i) = dft_32(x, i);
+for i = 0:31
+    y(i+1) = dft_32(x, i);
 end
 
+y = round(y,3);
 
 figure;
 subplot(2,1,1);
@@ -20,10 +22,8 @@ plot(f,imag(y));
 title('Iamginary Part');
 sgtitle('Radix-II FFT');
 
-
 % matlab fft
 X = fft(x);
-
 
 figure;
 subplot(2,1,1);

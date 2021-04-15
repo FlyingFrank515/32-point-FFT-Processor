@@ -15,15 +15,15 @@ module CTRL16(
     input                       clk,
     input                       rst,
     input                       valid_i,
-    input signed [18:0]         data_in_r,
-    input signed [18:0]         data_in_i,
+    input signed [15:0]         data_in_r,
+    input signed [15:0]         data_in_i,
     
     output reg                  valid_o,         
     output reg [1:0]            state,
-    output reg signed [18:0]    data_out_r,
-    output reg signed [18:0]    data_out_i,
-    output reg signed [9:0]     WN_r,
-    output reg signed [9:0]     WN_i
+    output reg signed [15:0]    data_out_r,
+    output reg signed [15:0]    data_out_i,
+    output reg signed [7:0]     WN_r,
+    output reg signed [7:0]     WN_i
 );
     
     // state parameter
@@ -79,75 +79,75 @@ module CTRL16(
     // Combinational part - WN logic
     always@(*) begin
         // Send the exp(-j*2*pi*n/16) where n go from 0 to 15
-        // format: 10bit (2 integer, 8 fractional)
+        // format: 10bit (2 integer, 6 fractional)
         case(count)
             33: begin
-                WN_r = 10'b0100000000;
-                WN_i = 10'b0000000000;
+                WN_r = 10'b01000000;
+                WN_i = 10'b00000000;
             end
             34: begin
-                WN_r = 10'b0011101100;
-                WN_i = 10'b1110011110;
+                WN_r = 10'b00111011;
+                WN_i = 10'b11100111;
             end
             35: begin
-                WN_r = 10'b0010110101;
-                WN_i = 10'b1101001010;
+                WN_r = 10'b00101101;
+                WN_i = 10'b11010010;
             end
             36: begin
-                WN_r = 10'b0001100001;
-                WN_i = 10'b1100010011;
+                WN_r = 10'b00011000;
+                WN_i = 10'b11000101;
             end
             37: begin
-                WN_r = 10'b0000000000;
-                WN_i = 10'b1100000000;
+                WN_r = 10'b00000000;
+                WN_i = 10'b11000000;
             end
             38: begin
-                WN_r = 10'b1110011110;
-                WN_i = 10'b1100010011;
+                WN_r = 10'b11100111;
+                WN_i = 10'b11000101;
             end
             39: begin
-                WN_r = 10'b1101001010;
-                WN_i = 10'b1101001010;
+                WN_r = 10'b11010010;
+                WN_i = 10'b11010010;
             end
             40: begin
-                WN_r = 10'b1100010011;
-                WN_i = 10'b1110011110;
+                WN_r = 10'b11000101;
+                WN_i = 10'b11100111;
             end
             41: begin
-                WN_r = 10'b1100000000;
-                WN_i = 10'b0000000000;
+                WN_r = 10'b11000000;
+                WN_i = 10'b00000000;
             end
             42: begin
-                WN_r = 10'b1100010011;
-                WN_i = 10'b0001100001;
+                WN_r = 10'b11000101;
+                WN_i = 10'b00011000;
             end
             43: begin
-                WN_r = 10'b1101001010;
-                WN_i = 10'b0010110101;
+                WN_r = 10'b11010010;
+                WN_i = 10'b00101101;
             end
             44: begin
-                WN_r = 10'b1110011110;
-                WN_i = 10'b0011101100;
+                WN_r = 10'b11100111;
+                WN_i = 10'b00111011;
             end
             45: begin
-                WN_r = 10'b0000000000;
-                WN_i = 10'b0100000000;
+                WN_r = 10'b00000000;
+                WN_i = 10'b01000000;
             end
             46: begin
-                WN_r = 10'b0001100001;
-                WN_i = 10'b0011101100;
+                WN_r = 10'b00011000;
+                WN_i = 10'b00111011;
             end
             47: begin
-                WN_r = 10'b0010110101;
-                WN_i = 10'b0010110101;
+                WN_r = 10'b00101101;
+                WN_i = 10'b00101101;
             end
             48: begin
-                WN_r = 10'b0011101100;
-                WN_i = 10'b0001100001;
+                WN_r = 10'b00111011;
+                WN_i = 10'b00011000;
             end
             default: begin
-                WN_r = 10'b0000000000;
-                WN_i = 10'b0000000000;
+                WN_r = 10'b00000000;
+                WN_i = 10'b00000000;
             end
         endcase
     end
