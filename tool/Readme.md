@@ -16,6 +16,8 @@
 
 ## python code ##
 
+### floating point to 8bit input ###
+
    command: python floating_to_8bit.py  [input_file_name]
 
 ​	input: txt files from matlab containing doubles
@@ -25,3 +27,15 @@
 ​	ex: python floating_to_8bit input_1.txt
 
 ​	The program will read data from "input_1.txt" and output data to a file name "input**_8bit**_1.txt" 
+
+### 16bit fixed point to complex ###
+
+command: python 16bit_fixed_to_double.py  [input_file_name]
+
+​	input: txt files from testbench containing 16bit fixed point data (real/imag part)
+
+   output: txt files containing complex data
+
+​	ex: python 16bit_fixed_to_double.py ../stage1_o.txt
+
+​	The program will read data from "../stage1_o.txt" and output data to a file name "../stage1_o**_double**.txt" 
