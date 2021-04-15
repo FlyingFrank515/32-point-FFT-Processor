@@ -7,8 +7,8 @@ x = round(x,3);
 y = zeros(1,32);
 
 % radix-2 method
-for i = 1:32
-    y(i) = dft_32(x, i);
+for i = 0:31
+    y(i+1) = dft_32(x, i);
 end
 
 y = round(y,3);
