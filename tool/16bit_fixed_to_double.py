@@ -34,6 +34,9 @@ string_out = string_in[0:-4] + "_double" + string_in[-4:]
 f = open(string_out, "w")
 i = 0
 while(i<len(pt_real)):
-    f.write(str(pt_real[i]) + "+" + str(pt_imag[i]) + "i" + '\n')
+    if(pt_imag[i]<0):
+        f.write(str(pt_real[i]) + str(pt_imag[i]) + "i" + '\n')
+    else:
+        f.write(str(pt_real[i]) + "+" + str(pt_imag[i]) + "i" + '\n')
     i += 1
 f.close()
