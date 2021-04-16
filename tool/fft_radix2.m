@@ -2,7 +2,7 @@ t = 0:31;
 f = 0:31;
 
 % NOTE: input range = (-32,32)
-x = 2*sin(4*t) + cos(5*t) + sin(t);
+x = cos(4*t);
 x = round(x,3);
 y = zeros(1,32);
 
