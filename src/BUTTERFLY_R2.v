@@ -68,8 +68,8 @@ module BUTTERFLY_R2(
             FIRST: begin
                 out_r = A_r + B_r;
                 out_i = A_i + B_i;
-                SR_r = A_r - B_r;
-                SR_i = A_i - B_i;
+                SR_r = B_r - A_r; // B:from delay, A: from input
+                SR_i = B_i - A_i;
             end
 
             // In second state, multiply delayed-data (h1~hN) with corresponding W (
