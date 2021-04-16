@@ -158,8 +158,8 @@ end
 
 always@(posedge clk or negedge rst) begin
     if(~rst)begin
-        out_r <= 0;
-        out_i <= 0;
+        next_out_r <= 0;
+        next_out_i <= 0;
         for (i = 0; i < 31; i++) begin
             result_r[i] <= 0;
             result_i[i] <= 0;
