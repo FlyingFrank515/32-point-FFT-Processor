@@ -8,7 +8,7 @@
 module STAGE1_tb;
     
     integer i, j, f;
-    reg clk, rst, valid, stop;
+    reg clk, rst_n, valid, stop;
     reg [7:0] before_ff [0:31];
     reg [15:0] data_in_r;
     wire [15:0] data_out_i, data_out_r;
@@ -16,7 +16,7 @@ module STAGE1_tb;
 
     STAGE1 test(
         .clk(clk),
-        .rst(rst),
+        .rst_n(rst_n),
         .valid_i(valid),
         .data_in_r(data_in_r),
         .data_in_i(19'd0),
@@ -33,13 +33,13 @@ module STAGE1_tb;
 
     initial begin
         clk         = 1'b1;
-        rst         = 1'b1;  
+        rst_n         = 1'b1;  
         valid       = 1'b0;
         stop        = 1'b0;
         i           = 0;
         j           = 0;
-        #2.5 rst=1'b0;         
-        #2.5 rst=1'b1;
+        #2.5 rst_n=1'b0;         
+        #2.5 rst_n=1'b1;
 
     end
 
