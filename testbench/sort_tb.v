@@ -7,8 +7,9 @@ integer i, j, f;
     reg clk, rst, start;
     reg  signed  [15:0] input_r;
     reg  signed  [15:0] input_i;
-    reg  signed  [15:0] gold_r[0;31];
-    reg  signed  [15:0] gold_i[0;31];
+    reg  signed  [15:0] gold_r[0:31];
+    reg  signed  [15:0] gold_i[0:31];
+
 
     SORTING test(
     .clk(clk),
