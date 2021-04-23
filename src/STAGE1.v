@@ -6,29 +6,33 @@
 // ===================================================================
 `include "CTRL16.v"
 `include "SR16.v"
-`include "BUTTERFLY_R2.v"
+`include "BUTTERFLY_R2_1.v"
 
 module STAGE1(
     input                   clk,
     input                   rst,
     input                   valid_i,
-    input signed [15:0]     data_in_r,
-    input signed [15:0]     data_in_i,
+    input signed [7:0]      data_in_r,
+    input signed [7:0]      data_in_i,
 
     output                  valid_o,
-    output signed [15:0]    data_out_r,
-    output signed [15:0]    data_out_i
+    output signed [13:0]    data_out_r,
+    output signed [13:0]    data_out_i
 );
     // Wire Reg declaration
-    reg  [15:0] data_in_r_r, data_in_i_r;
+    reg  [7:0] data_in_r_r, data_in_i_r;
     reg  valid_i_r;
     
     wire [1:0] state_bus;
     wire [7:0] WN_r_bus, WN_i_bus;
-    wire [15:0] SR_r_bus, SR_i_bus;
-    wire [15:0] FB_r_bus, FB_i_bus;
-    wire [15:0] data_r_bus, data_i_bus;
+    wire [8:0] SR_r_bus, SR_i_bus;
+    wire [8:0] FB_r_bus, FB_i_bus;
+    wire [7:0] data_r_bus, data_i_bus;
     
+    // wire [13:0] data_r_ext, data_i_ext;
+    // assign data_r_ext = { {6{data_in_r[7]}}, data_in_r[7:0]};
+    // assign data_i_ext = { {6{data_in_i[7]}}, data_in_i[7:0]};
+
     CTRL16 Control_unit(
         .clk(clk),
         .rst(rst),
@@ -54,7 +58,7 @@ module STAGE1(
         .out_i(FB_i_bus)
     );
 
-    BUTTERFLY_R2 butterfly(
+    BUTTERFLY_R2_1 butterfly(
         .state(state_bus),
         .A_r(data_r_bus),
         .A_i(data_i_bus),

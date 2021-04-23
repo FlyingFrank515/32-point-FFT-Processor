@@ -16,8 +16,8 @@ module STAGE4(
     input signed [15:0]     data_in_i,
 
     output                  valid_o,
-    output signed [15:0]    data_out_r,
-    output signed [15:0]    data_out_i
+    output signed [16:0]    data_out_r,
+    output signed [16:0]    data_out_i
 );
     // Wire Reg declaration
     reg  [15:0] data_in_r_r, data_in_i_r;
@@ -25,8 +25,8 @@ module STAGE4(
     
     wire [1:0] state_bus;
     wire [1:0] WN;
-    wire [15:0] SR_r_bus, SR_i_bus;
-    wire [15:0] FB_r_bus, FB_i_bus;
+    wire [16:0] SR_r_bus, SR_i_bus;
+    wire [16:0] FB_r_bus, FB_i_bus;
     wire [15:0] data_r_bus, data_i_bus;
     
     CTRL2 Control_unit(
@@ -53,7 +53,7 @@ module STAGE4(
         .out_i(FB_i_bus)
     );
 
-    BUTTERFLY_R2_small butterfly(
+    BUTTERFLY_R2_4 butterfly(
         .state(state_bus),
         .A_r(data_r_bus),
         .A_i(data_i_bus),

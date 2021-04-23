@@ -15,13 +15,13 @@ module CTRL16(
     input                       clk,
     input                       rst,
     input                       valid_i,
-    input signed [15:0]         data_in_r,
-    input signed [15:0]         data_in_i,
+    input signed [7:0]          data_in_r, // (5,3)
+    input signed [7:0]          data_in_i, // (5,3)
     
     output reg                  valid_o,         
     output reg [1:0]            state,
-    output reg signed [15:0]    data_out_r,
-    output reg signed [15:0]    data_out_i,
+    output reg signed [7:0]     data_out_r, // (6,8)
+    output reg signed [7:0]     data_out_i, // (6,8)
     output reg signed [7:0]     WN_r,
     output reg signed [7:0]     WN_i
 );

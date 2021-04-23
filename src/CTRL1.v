@@ -11,17 +11,17 @@
 //     (flipfloped data_in)
 // 
 // ===================================================================
-module CTRL2(
+module CTRL1(
     input                       clk,
     input                       rst,
     input                       valid_i,
-    input signed [15:0]         data_in_r,
-    input signed [15:0]         data_in_i,
+    input signed [16:0]         data_in_r,
+    input signed [16:0]         data_in_i,
     
     output reg                  valid_o,         
     output reg [1:0]            state,
-    output reg signed [15:0]    data_out_r,
-    output reg signed [15:0]    data_out_i,
+    output reg signed [16:0]    data_out_r,
+    output reg signed [16:0]    data_out_i,
 );
     
     // state parameter
