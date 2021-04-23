@@ -18,6 +18,7 @@ module BUTTERFLY_R2_4(
     input signed [15:0]         A_i,
     input signed [16:0]         B_r,
     input signed [16:0]         B_i,
+    input [1:0]                 WN,
     
     output reg signed [16:0]    out_r,
     output reg signed [16:0]    out_i,
@@ -29,6 +30,12 @@ module BUTTERFLY_R2_4(
     parameter FIRST     = 2'b01;
     parameter SECOND    = 2'b10;
     parameter WAITING   = 2'b11;
+
+    // WN parameter
+    parameter ZERO      = 2'b00;
+    parameter ONE       = 2'b01;
+    parameter TWO       = 2'b10;
+    parameter THREE     = 2'b11;
     
     assign B_r_neg = ~B_r + 1;
     assign B_i_neg = ~B_i + 1;
@@ -63,10 +70,20 @@ module BUTTERFLY_R2_4(
             // In second state, multiply delayed-data (h1~hN) with corresponding W (
             // W^0~W^(N-1)/2 and output it
             SECOND: begin
-                out_r = B_r;
-                out_i = B_i;
-                SR_r = 0;
-                SR_i = 0;
+                case(WN)
+                    ZERO: begin
+                        out_r = B_r;
+                        out_i = B_i;
+                    end
+                    TWO: begin
+                        out_r = B_r_neg;
+                        out_i = B_i_neg;
+                    end
+                    default: begin
+                        out_r = B_r;
+                        out_i = B_i;
+                    end
+                endcase
             end
             
             default: begin

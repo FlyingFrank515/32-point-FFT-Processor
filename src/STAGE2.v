@@ -6,7 +6,7 @@
 // ===================================================================
 `include "CTRL8.v"
 `include "SR8.v"
-`include "BUTTERFLY_R2.v"
+`include "BUTTERFLY_R2_2.v"
 
 module STAGE2(
     input                   clk,

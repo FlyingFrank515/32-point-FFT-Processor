@@ -1,10 +1,10 @@
-module SHIFTREG_8(
+module SR8(
     input                   clk,
     input                   rst_n,
     input [14:0]            in_r,
     input [14:0]            in_i,
     output [14:0]           out_r,
-    output [14:0]           out_i,
+    output [14:0]           out_i
 );
     // change LENGTH here to set up the length of this shift register
     //=================================================

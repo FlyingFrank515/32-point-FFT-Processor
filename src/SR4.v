@@ -1,10 +1,10 @@
-module SHIFTREG_4(
+module SR4(
     input                   clk,
     input                   rst_n,
     input [15:0]            in_r,
     input [15:0]            in_i,
     output [15:0]           out_r,
-    output [15:0]           out_i,
+    output [15:0]           out_i
 );
     // change LENGTH here to set up the length of this shift register
     //=================================================

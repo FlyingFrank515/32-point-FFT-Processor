@@ -6,7 +6,7 @@
 // ===================================================================
 `include "CTRL2.v"
 `include "SR2.v"
-`include "BUTTERFLY_R2_small.v"
+`include "BUTTERFLY_R2_4.v"
 
 module STAGE4(
     input                   clk,
@@ -60,7 +60,6 @@ module STAGE4(
         .B_r(FB_r_bus),
         .B_i(FB_i_bus),
         .WN(WN),
-
 
         .out_r(data_out_r),
         .out_i(data_out_i),

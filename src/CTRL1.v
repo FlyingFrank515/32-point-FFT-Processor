@@ -21,7 +21,7 @@ module CTRL1(
     output reg                  valid_o,         
     output reg [1:0]            state,
     output reg signed [16:0]    data_out_r,
-    output reg signed [16:0]    data_out_i,
+    output reg signed [16:0]    data_out_i
 );
     
     // state parameter
