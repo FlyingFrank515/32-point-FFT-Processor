@@ -13,7 +13,7 @@
 // ===================================================================
 module CTRL2(
     input                       clk,
-    input                       rst,
+    input                       rst_n,
     input                       valid_i,
     input signed [16:0]         data_in_r,
     input signed [15:0]         data_in_i,
@@ -27,7 +27,7 @@ module CTRL2(
     
     // state parameter
     parameter IDLE      = 2'b00;
-    parameter FIRST     = 2'b01;
+    parameter FIrst_n     = 2'b01;
     parameter SECOND    = 2'b10;
     parameter WAITING   = 2'b11;
 
@@ -58,12 +58,12 @@ module CTRL2(
             WAITING: begin
                 next_count = count + 1;
                 if(count == 2) begin
-                    next_state = FIRST;
+                    next_state = FIrst_n;
                     // After 2 cycles, we are going to output g
                     next_valid_o = 1;
                 end
             end
-            FIRST: begin
+            FIrst_n: begin
                 next_count = count + 1;
                 if(count == 4) begin
                     // After 4 cycles, we are going to output h
@@ -93,8 +93,8 @@ module CTRL2(
     end
 
     // Sequential part
-    always@(posedge clk or negedge rst) begin
-        if(!rst) begin
+    always@(posedge clk or negedge rst_n) begin
+        if(!rst_n) begin
             state <= IDLE;
             count <= 0;
             data_out_r <= 0;

@@ -10,7 +10,7 @@
 
 module STAGE4(
     input                   clk,
-    input                   rst,
+    input                   rst_n,
     input                   valid_i,
     input signed [15:0]     data_in_r,
     input signed [15:0]     data_in_i,
@@ -31,7 +31,7 @@ module STAGE4(
     
     CTRL2 Control_unit(
         .clk(clk),
-        .rst(rst),
+        .rst_n(rst_n),
         .valid_i(valid_i_r),
         .data_in_r(data_in_r_r),
         .data_in_i(data_in_i_r),
@@ -45,7 +45,7 @@ module STAGE4(
     
     SR2 shiftregister(
         .clk(clk),
-        .rst(rst),
+        .rst_n(rst_n),
         .in_r(SR_r_bus),
         .in_i(SR_i_bus),
         
@@ -69,8 +69,8 @@ module STAGE4(
     );
 
     // Make sure that all inputs sending into sub-modules are flipfloped.
-    always@(posedge clk or negedge rst) begin
-        if(!rst) begin
+    always@(posedge clk or negedge rst_n) begin
+        if(!rst_n) begin
             data_in_r_r <= 0;
             data_in_i_r <= 0;
             valid_i_r <= 0;

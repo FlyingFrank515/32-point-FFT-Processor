@@ -1,6 +1,6 @@
 module SHIFTREG_2(
     input                   clk,
-    input                   rst,
+    input                   rst_n,
     input [16:0]            in_r,
     input [16:0]            in_i,
     output [16:0]           out_r,
@@ -20,8 +20,8 @@ module SHIFTREG_2(
     assign out_r = r_bus[0];
     assign out_i = i_bus[0];
 
-    always@ (posedge clk or negedge rst) begin
-        if(!rst) begin
+    always@ (posedge clk or negedge rst_n) begin
+        if(!rst_n) begin
             for(i = 0; i < LENGTH; i = i+1) begin
                 r_bus[i] <= 0;
                 i_bus[i] <= 0;

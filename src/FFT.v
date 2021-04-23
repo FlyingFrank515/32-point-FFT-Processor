@@ -17,7 +17,7 @@
 
 module FFT(
     input                   clk,
-    input                   rst,
+    input                   rst_n,
     input                   valid_i,
     input signed [7:0]      x_r,
     
@@ -34,7 +34,7 @@ module FFT(
 
     STAGE1 stg1(
         .clk(clk),
-        .rst(rst),
+        .rst_n(rst_n),
         .valid_i(valid_i),
         .data_in_r(x_r),
         .data_in_i(8'd0),
@@ -46,7 +46,7 @@ module FFT(
 
     STAGE2 stg2(
         .clk(clk),
-        .rst(rst),
+        .rst_n(rst_n),
         .valid_i(valid_o_bus[0]),
         .data_in_r(data_r_bus_1),
         .data_in_i(data_i_bus_1),
@@ -58,7 +58,7 @@ module FFT(
 
     STAGE3 stg3(
         .clk(clk),
-        .rst(rst),
+        .rst_n(rst_n),
         .valid_i(valid_o_bus[1]),
         .data_in_r(data_r_bus_2),
         .data_in_i(data_i_bus_2),
@@ -71,7 +71,7 @@ module FFT(
 
     STAGE4 stg4(
         .clk(clk),
-        .rst(rst),
+        .rst_n(rst_n),
         .valid_i(valid_o_bus[2]),
         .data_in_r(data_r_bus_3),
         .data_in_i(data_i_bus_3),
@@ -83,7 +83,7 @@ module FFT(
 
     STAGE5 stg5(
         .clk(clk),
-        .rst(rst),
+        .rst_n(rst_n),
         .valid_i(valid_o_bus[3]),
         .data_in_r(data_r_bus_4),
         .data_in_i(data_i_bus_4),

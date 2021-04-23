@@ -6,7 +6,7 @@
 // ===================================================================
 module SR16(
     input                   clk,
-    input                   rst,
+    input                   rst_n,
     input [8:0]             in_r, //(6,3)
     input [8:0]             in_i, //(6,3)
     
@@ -27,8 +27,8 @@ module SR16(
     assign out_r = r_bus[0];
     assign out_i = i_bus[0];
 
-    always@ (posedge clk or negedge rst) begin
-        if(!rst) begin
+    always@ (posedge clk or negedge rst_n) begin
+        if(!rst_n) begin
             for(i = 0; i < LENGTH; i = i+1) begin
                 r_bus[i] <= 0;
                 i_bus[i] <= 0;
