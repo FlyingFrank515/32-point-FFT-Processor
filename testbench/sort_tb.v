@@ -9,6 +9,8 @@ integer i, j, f;
     reg  signed  [15:0] input_i;
     reg  signed  [15:0] gold_r[0:31];
     reg  signed  [15:0] gold_i[0:31];
+    reg  signed  [15:0] output_r[0:31];
+    reg  signed  [15:0] output_i[0:31];
 
 
     SORTING test(
@@ -20,3 +22,8 @@ integer i, j, f;
     .result_r(output_r),
     .result_i(output_i),
     );
+
+    initial	begin
+        $readmemb ("sorting_test.txt",  before_ff);
+        f = $fopen("sorting_result.txt","w");
+    end
