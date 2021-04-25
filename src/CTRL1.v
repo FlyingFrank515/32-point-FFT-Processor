@@ -26,7 +26,7 @@ module CTRL1(
     
     // state parameter
     parameter IDLE      = 2'b00;
-    parameter FIrst_n     = 2'b01;
+    parameter FIRST     = 2'b01;
     parameter SECOND    = 2'b10;
     parameter WAITING   = 2'b11;
 
@@ -45,18 +45,18 @@ module CTRL1(
                 next_count = 0;
                 if(valid_i) begin
                     next_state = WAITING;
-                    next_count = count + 1;
+                    next_count = 1;
                 end
             end
             WAITING: begin
                 next_count = count + 1;
                 if(count == 1) begin
-                    next_state = FIrst_n;
+                    next_state = FIRST;
                     // After 1 cycles, we are going to output g
                     next_valid_o = 1;
                 end
             end
-            FIrst_n: begin
+            FIRST: begin
                 next_count = count + 1;
                 if(count == 2) begin
                     // After 2 cycles, we are going to output h
@@ -69,6 +69,11 @@ module CTRL1(
                     // After 3 cycles, all data have been outputed
                     next_state = IDLE;
                     next_valid_o = 0;
+                    if(valid_i) begin
+                        next_state = WAITING;
+                        next_count = 1;
+                    end
+                    else next_state = IDLE;
                 end
             end
         endcase

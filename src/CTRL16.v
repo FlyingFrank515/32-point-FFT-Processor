@@ -28,7 +28,7 @@ module CTRL16(
     
     // state parameter
     parameter IDLE      = 2'b00;
-    parameter FIrst_n     = 2'b01;
+    parameter FIRST     = 2'b01;
     parameter SECOND    = 2'b10;
     parameter WAITING   = 2'b11;
 
@@ -47,18 +47,18 @@ module CTRL16(
                 next_count = 0;
                 if(valid_i) begin
                     next_state = WAITING;
-                    next_count = count + 1;
+                    next_count = 1;
                 end
             end
             WAITING: begin
                 next_count = count + 1;
                 if(count == 16) begin
-                    next_state = FIrst_n;
+                    next_state = FIRST;
                     // After 16 cycles, we are going to output g
                     next_valid_o = 1;
                 end
             end
-            FIrst_n: begin
+            FIRST: begin
                 next_count = count + 1;
                 if(count == 32) begin
                     // After 32 cycles, we are going to output h
@@ -71,6 +71,11 @@ module CTRL16(
                     // After 48 cycles, all data have been outputed
                     next_state = IDLE;
                     next_valid_o = 0;
+                    if(valid_i) begin
+                        next_state = WAITING;
+                        next_count = 1;
+                    end
+                    else next_state = IDLE;
                 end
             end
         endcase
