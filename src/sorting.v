@@ -17,8 +17,8 @@ reg  signed  [15:0] next_result_r[0:31];
 reg  signed  [15:0] next_result_i[0:31];
 
 count = 5'd0;
-if(start_sorting)sort = 1;
 always@(*) begin
+    if(start_sorting)sort = 1;
     next_sort = sort;
     next_count = count;
     if(next_sort) begin

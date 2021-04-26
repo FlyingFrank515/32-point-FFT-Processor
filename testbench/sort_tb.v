@@ -4,7 +4,7 @@
 module SORT_tb;
 
 integer i, j, f;
-    reg clk, rst, start;
+    reg clk, rst, start, finish;
     reg  signed  [15:0] input_r;
     reg  signed  [15:0] input_i;
     reg  signed  [15:0] gold_r[0:31];
@@ -26,4 +26,47 @@ integer i, j, f;
     initial	begin
         $readmemb ("sorting_test.txt",  before_ff);
         f = $fopen("sorting_result.txt","w");
+    end
+
+    initial begin
+        clk         = 1'b1;
+        finish      = 1'b0;
+        rst         = 1'b1;  
+        start       = 1'b0;
+        #2.5 rst=1'b0;         
+        #2.5 rst=1'b1;
+        start       = 1'b1;
+
+    end
+
+    always begin #(`CYCLE/2) clk = ~clk; end
+
+    initial begin
+        $dumpfile("sort.fsdb");
+        $dumpvars;
+    end
+
+    always @(negedge clk)begin
+        if(i < 32) begin
+            start = 1; 
+            input_r = before_ff[i][31:16];
+            input_i = before_ff[i][15:0];
+            i = i+1;      
+        end
+        else begin
+            finish = 1'b1;
+        end
+        
+    end
+
+    always @(negedge clk)begin
+        if(finish) begin
+            $fwrite(f,"%b/%b\n", output_r, output_i);
+        end
+
+    end
+
+    always @(posedge stop)begin
+        $fclose(f);
+        $finish;
     end
