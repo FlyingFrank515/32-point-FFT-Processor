@@ -1,24 +1,34 @@
 module SORTING(
-    input                   clk,
-    input                   rst,
-    input                   start_sorting,
-    input  signed [15:0]    out_r,
-    input  signed [15:0]    out_i,
-    output signed [15:0]    result_r[0:31],
-    output signed [15:0]    result_i[0:31],
+    clk,
+    rst,
+    start_sorting,
+    out_r,
+    out_i,
+    result_r,
+    result_i
 );
 
-integer             i;
-reg                 sort, next_sort;
-reg          [4:0]  count, next_count;
-reg  signed  [15:0] prev_out_r;
-reg  signed  [15:0] prev_out_i;
-reg  signed  [15:0] next_result_r[0:31];
-reg  signed  [15:0] next_result_i[0:31];
+integer               i;
+input                 clk, rst, start_sorting;
+reg                   sort, next_sort;
+reg            [4:0]  count, next_count;
+input  signed  [15:0] out_r;
+input  signed  [15:0] out_i;
+output signed  [15:0] result_r[0:31];
+output signed  [15:0] result_i[0:31];
+reg  signed    [15:0] prev_out_r;
+reg  signed    [15:0] prev_out_i;
+reg  signed    [15:0] next_result_r[0:31];
+reg  signed    [15:0] next_result_i[0:31];
 
-count = 5'd0;
+initial begin
+    count = 0;
+end
+always@(posedge start_sorting) begin
+    sort = 1'b1;
+end
+
 always@(*) begin
-    if(start_sorting)sort = 1;
     next_sort = sort;
     next_count = count;
     if(next_sort) begin
@@ -152,7 +162,7 @@ always@(*) begin
                 next_result_i[30] = prev_out_i;
                 next_sort = 0;
             end
-        next_count++;
+        endcase
     end
 end
 
@@ -160,7 +170,7 @@ always@(posedge clk or negedge rst) begin
     if(~rst)begin
         prev_out_r <= 0;
         prev_out_i <= 0;
-        for (i = 0; i < 31; i++) begin
+        for (i = 0; i < 31; i = i+1) begin
             result_r[i] <= 0;
             result_i[i] <= 0;
         end
@@ -170,11 +180,12 @@ always@(posedge clk or negedge rst) begin
     else begin
         prev_out_r <= out_r;
         prev_out_i <= out_i;
-        for (i = 0; i < 31; i++) begin
+        for (i = 0; i < 31; i = i+1) begin
             result_r[i] <= next_result_r[i];
             result_i[i] <= prev_out_i[i];
         end
         sort <= next_sort;
-        count <= next_count;
+        count <= next_count + 1;
     end
 end
+endmodule
