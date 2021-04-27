@@ -12,16 +12,16 @@ integer               i, j;
 input                 clk, rst, start_sorting;
 reg                   sort, next_sort;
 reg            [4:0]  count, next_count;
-input  signed  [15:0] out_r;
-input  signed  [15:0] out_i;
-output signed  [15:0] answer_r;
-output signed  [15:0] answer_i;
-reg    signed  [15:0] result_r[0:31];
-reg    signed  [15:0] result_i[0:31];
-reg    signed  [15:0] prev_out_r;
-reg    signed  [15:0] prev_out_i;
-reg    signed  [15:0] next_result_r[0:31];
-reg    signed  [15:0] next_result_i[0:31];
+input  signed  [9:0] out_r;
+input  signed  [7:0] out_i;
+output reg signed  [9:0] answer_r;
+output reg signed  [7:0] answer_i;
+reg    signed  [9:0] result_r[0:31];
+reg    signed  [7:0] result_i[0:31];
+reg    signed  [9:0] prev_out_r;
+reg    signed  [7:0] prev_out_i;
+reg    signed  [9:0] next_result_r[0:31];
+reg    signed  [7:0] next_result_i[0:31];
 
 initial begin
     count = 0;
@@ -33,8 +33,8 @@ end
 
 always@(*) begin
     next_sort = sort;
-    next_count = count;
     if(next_sort) begin
+        next_count = count;
         case(next_count)
             5'd0 : begin
                 next_result_r[31] = prev_out_r;
@@ -192,9 +192,10 @@ always@(posedge clk or negedge rst) begin
     end
 end
 always@(posedge clk) begin
-    if(count >= 32)begin
-        answer <= result[j];
-        j <= j + 1;
+    if(count == 5'd31)begin
+        answer_r[9:0] = result_r[j];
+        answer_i[7:0] = result_i[j];
+        j = j + 1;
     end
 end
 endmodule

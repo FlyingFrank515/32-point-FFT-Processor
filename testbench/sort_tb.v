@@ -5,13 +5,13 @@ module SORT_tb;
 
 integer i, j, f;
     reg clk, rst, start, finish, stop;
-    reg          [15:0] before [0:31];
-    reg  signed  [15:0] input_r;
-    reg  signed  [15:0] input_i;
-    reg  signed  [15:0] gold_r[0:31];
-    reg  signed  [15:0] gold_i[0:31];
-    reg  signed  [15:0] output_r;
-    reg  signed  [15:0] output_i;
+    reg          [17:0] before [0:31];
+    reg  signed  [9:0] input_r;
+    reg  signed  [7:0] input_i;
+    reg  signed  [9:0] gold_r[0:31];
+    reg  signed  [7:0] gold_i[0:31];
+    wire signed  [9:0] output_r;
+    wire signed  [7:0] output_i;
 
 
     SORTING test(
@@ -25,12 +25,13 @@ integer i, j, f;
     );
 
     initial	begin
-        $readmemb ("sorting_test.txt",  before);
         f = $fopen("sorting_result.txt","w");
     end
 
     initial begin
         clk         = 1'b1;
+        input_r     = 0;
+        input_i     = 0;
         stop        = 1'b0;
         finish      = 1'b0;
         rst         = 1'b1;  
@@ -51,8 +52,8 @@ integer i, j, f;
     always @(negedge clk)begin
         if(i < 32) begin
             start = 1; 
-            input_r = before[i][31:16];
-            input_i = before[i][15:0];
+            input_r <= input_r + 1'b1;
+            input_i <= input_i + 1'b1;
             i = i+1;      
         end
         else begin
@@ -64,8 +65,9 @@ integer i, j, f;
     always @(negedge clk)begin
         if(finish) begin
             $fwrite(f,"%b/%b\n", output_r, output_i);
-            stop = 1'b1;
+            i = i+1; 
         end
+        else if (i > 63) stop = 1'b1;
 
     end
 
