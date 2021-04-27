@@ -3,8 +3,11 @@ import math
 import sys
 
 def double(x):
+    # total i+1 bit, behind . :j, front of . : i+1-j
     i = 15
-    exp = 0.5**6
+    j = 6
+    k = i - j
+    exp = 0.5**j
     out = 0
     while(i>0):
         if(x[i]=='1'):
@@ -12,7 +15,7 @@ def double(x):
         exp = exp * 2
         i = i - 1
     if(x[0]=='1'):
-        out -= 512
+        out -= 2**k
     return out
 
 string_in = sys.argv[1]
