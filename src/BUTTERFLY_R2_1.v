@@ -36,8 +36,18 @@ module BUTTERFLY_R2_1(
     // Wire-Reg declaration
     wire signed [16:0] mul13, mul24, mul14, mul23;
     wire signed [17:0] tempA, tempB;
+    wire signed [8:0] A_ext_r, A_ext_i;
+    wire signed [9:0] ApB_r, ApB_i;
+    wire signed [9:0] AmB_r, AmB_i;
 
     // Combinational part
+    assign A_ext_r = {A_r[7], A_r};
+    assign A_ext_i = {A_i[7], A_i};
+    assign ApB_r = A_ext_r + B_r;
+    assign ApB_i = A_ext_i + B_i;
+    assign AmB_r = B_r - A_ext_r;
+    assign AmB_i = B_i - A_ext_i;
+    
     assign mul13 = B_r * WN_r;
     assign mul24 = B_i * WN_i;
     assign mul14 = B_r * WN_i;
@@ -59,18 +69,18 @@ module BUTTERFLY_R2_1(
             WAITING: begin
                 out_r = 0;
                 out_i = 0;
-                SR_r = $signed({A_r[7], A_r});
-                SR_i = $signed({A_i[7], A_i});
+                SR_r = A_ext_r;
+                SR_i = A_ext_i;
             end
             
             // In first state, add the delayed-data with input data and output it (g)
             // Also, subtract the delayed-data from input data and 
             // let it delay for N/2 cycle (send it to shift register)
             FIRST: begin
-                out_r = $signed({A_r[7], A_r}) + B_r;
-                out_i = $signed({A_i[7], A_i}) + B_i;
-                SR_r = B_r - $signed({A_r[7], A_r}); // B:from delay, A: from input
-                SR_i = B_i - $signed({A_i[7], A_i});
+                out_r = {ApB_r[8:0], 5'b00000};
+                out_i = {ApB_i[8:0], 5'b00000};
+                SR_r = AmB_r[8:0]; // B:from delay, A: from input
+                SR_i = AmB_i[8:0];
             end
 
             // In second state, multiply delayed-data (h1~hN) with corresponding W (
