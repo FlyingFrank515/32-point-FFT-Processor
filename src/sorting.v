@@ -4,25 +4,28 @@ module SORTING(
     start_sorting,
     out_r,
     out_i,
-    result_r,
-    result_i
+    answer_r,
+    answer_i
 );
 
-integer               i;
+integer               i, j;
 input                 clk, rst, start_sorting;
 reg                   sort, next_sort;
 reg            [4:0]  count, next_count;
 input  signed  [15:0] out_r;
 input  signed  [15:0] out_i;
-output signed  [15:0] result_r[0:31];
-output signed  [15:0] result_i[0:31];
-reg  signed    [15:0] prev_out_r;
-reg  signed    [15:0] prev_out_i;
-reg  signed    [15:0] next_result_r[0:31];
-reg  signed    [15:0] next_result_i[0:31];
+output signed  [15:0] answer_r;
+output signed  [15:0] answer_i;
+reg    signed  [15:0] result_r[0:31];
+reg    signed  [15:0] result_i[0:31];
+reg    signed  [15:0] prev_out_r;
+reg    signed  [15:0] prev_out_i;
+reg    signed  [15:0] next_result_r[0:31];
+reg    signed  [15:0] next_result_i[0:31];
 
 initial begin
     count = 0;
+    j = 0;
 end
 always@(posedge start_sorting) begin
     sort = 1'b1;
@@ -186,6 +189,12 @@ always@(posedge clk or negedge rst) begin
         end
         sort <= next_sort;
         count <= next_count + 1;
+    end
+end
+always@(posedge clk) begin
+    if(count >= 32)begin
+        answer <= result[j];
+        j <= j + 1;
     end
 end
 endmodule

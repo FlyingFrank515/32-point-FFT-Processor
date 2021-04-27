@@ -10,8 +10,8 @@ integer i, j, f;
     reg  signed  [15:0] input_i;
     reg  signed  [15:0] gold_r[0:31];
     reg  signed  [15:0] gold_i[0:31];
-    reg  signed  [15:0] output_r[0:31];
-    reg  signed  [15:0] output_i[0:31];
+    reg  signed  [15:0] output_r;
+    reg  signed  [15:0] output_i;
 
 
     SORTING test(
@@ -20,8 +20,8 @@ integer i, j, f;
     .start_sorting(start),
     .out_r(input_r),
     .out_i(input_i),
-    .result_r(output_r),
-    .result_i(output_i)
+    .answer_r(output_r),
+    .answer_i(output_i)
     );
 
     initial	begin
