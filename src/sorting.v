@@ -7,6 +7,42 @@ module SORTING(
     answer_r,
     answer_i
 );
+/*
+*****************************
+*    [0] output ->  [31]    *
+*    [1] output ->  [15]    *
+*    [2] output ->  [7]     *
+*    [3] output ->  [23]    *                                              
+*    [4] output ->  [3]     *
+*    [5] output ->  [19]    *
+*    [6] output ->  [11]    *
+*    [7] output ->  [27]    *
+*    [8] output ->  [1]     *
+*    [9] output ->  [17]    *
+*    [10] output ->  [9]    *
+*    [11] output ->  [25]   *
+*    [12] output ->  [5]    *
+*    [13] output ->  [21]   *                                              
+*    [14] output ->  [13]   *
+*    [15] output ->  [29]   *
+*    [16] output ->  [0]    *
+*    [17] output ->  [16]   *
+*    [18] output ->  [8]    *
+*    [19] output ->  [24]   *
+*    [20] output ->  [4]    *
+*    [21] output ->  [20]   *
+*    [22] output ->  [12]   *
+*    [23] output ->  [28]   *                                              
+*    [24] output ->  [2]    *
+*    [25] output ->  [18]   *
+*    [26] output ->  [10]   *
+*    [27] output ->  [26]   *
+*    [28] output ->  [6]    *
+*    [29] output ->  [22]   *
+*    [30] output ->  [14]   *
+*    [31] output ->  [30]   *
+*****************************
+*/
 
 integer               i, j;
 input                 clk, rst, start_sorting;
