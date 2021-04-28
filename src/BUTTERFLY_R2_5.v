@@ -62,8 +62,8 @@ module BUTTERFLY_R2_5(
             SECOND: begin
                 out_r = B_r;
                 out_i = B_i;
-                SR_r = 0;
-                SR_i = 0;
+                SR_r = {A_r[16], A_r};
+                SR_i = {A_i[16], A_i};
             end
             
             default: begin

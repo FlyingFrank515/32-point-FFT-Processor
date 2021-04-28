@@ -88,8 +88,8 @@ module BUTTERFLY_R2_1(
             SECOND: begin
                 out_r = tempA[14:1];
                 out_i = tempB[14:1];
-                SR_r = 0;
-                SR_i = 0;
+                SR_r = A_ext_r;
+                SR_i = A_ext_i;
             end
             
             default: begin

@@ -95,8 +95,8 @@ module BUTTERFLY_R2_3(
                         out_i = B_r;
                     end
                 endcase
-                SR_r = 0;
-                SR_i = 0;
+                SR_r = {A_r[14], A_r};
+                SR_i = {A_i[14], A_i};
             end
             
             default: begin

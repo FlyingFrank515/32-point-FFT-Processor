@@ -74,13 +74,15 @@ module CTRL2(
                 next_count = count + 1;
                 if(count == 6) begin
                     // After 6 cycles, all data have been outputed
-                    next_state = IDLE;
-                    next_valid_o = 0;
                     if(valid_i) begin
-                        next_state = WAITING;
-                        next_count = 1;
+                        next_state = FIRST;
+                        next_count = 3;
                     end
-                    else next_state = IDLE;
+                    else begin
+                        next_state = IDLE;
+                        next_count = 0;
+                        next_valid_o = 0;
+                    end
                 end
             end
         endcase
