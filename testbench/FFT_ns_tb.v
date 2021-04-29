@@ -46,7 +46,7 @@ module FFT_ns_tb;
     always begin #(`CYCLE/2) clk = ~clk; end
 
     initial begin
-        $dumpfile("FFT_no_sorting.fsdb");
+        $dumpfile("FFT_no_sorting");
         $dumpvars;
     end
 

@@ -46,7 +46,7 @@ module STAGE1_tb;
     always begin #(`CYCLE/2) clk = ~clk; end
 
     initial begin
-        $dumpfile("stage1.fsdb");
+        $dumpfile("stage1");
         $dumpvars;
     end
 
