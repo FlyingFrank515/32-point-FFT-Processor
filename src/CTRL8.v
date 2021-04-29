@@ -89,72 +89,40 @@ module CTRL8(
         // format: 10bit (2 integer, 6 fractional)
         case(count)
             17: begin
-                WN_r = 10'b01000000;
-                WN_i = 10'b00000000;
+                WN_r = 8'b01000000;
+                WN_i = 8'b00000000;
             end
-            // 34: begin
-            //     WN_r = 10'b00111011;
-            //     WN_i = 10'b11100111;
-            // end
             18: begin
-                WN_r = 10'b00101101;
-                WN_i = 10'b11010010;
+                WN_r = 8'b00111011;
+                WN_i = 8'b11100111;
             end
-            // 36: begin
-            //     WN_r = 10'b00011000;
-            //     WN_i = 10'b11000101;
-            // end
             19: begin
-                WN_r = 10'b00000000;
-                WN_i = 10'b11000000;
+                WN_r = 8'b00101101;
+                WN_i = 8'b11010010;
             end
-            // 38: begin
-            //     WN_r = 10'b11100111;
-            //     WN_i = 10'b11000101;
-            // end
             20: begin
-                WN_r = 10'b11010010;
-                WN_i = 10'b11010010;
+                WN_r = 8'b00011000;
+                WN_i = 8'b11000100;
             end
-            // 40: begin
-            //     WN_r = 10'b11000101;
-            //     WN_i = 10'b11100111;
-            // end
             21: begin
-                WN_r = 10'b11000000;
-                WN_i = 10'b00000000;
+                WN_r = 8'b00000000;
+                WN_i = 8'b11000000;
             end
-            // 42: begin
-            //     WN_r = 10'b11000101;
-            //     WN_i = 10'b00011000;
-            // end
             22: begin
-                WN_r = 10'b11010010;
-                WN_i = 10'b00101101;
+                WN_r = 8'b11100111;
+                WN_i = 8'b11000100;
             end
-            // 44: begin
-            //     WN_r = 10'b11100111;
-            //     WN_i = 10'b00111011;
-            // end
             23: begin
-                WN_r = 10'b00000000;
-                WN_i = 10'b01000000;
+                WN_r = 8'b11010010;
+                WN_i = 8'b11010010;
             end
-            // 46: begin
-            //     WN_r = 10'b00011000;
-            //     WN_i = 10'b00111011;
-            // end
             24: begin
-                WN_r = 10'b00101101;
-                WN_i = 10'b00101101;
+                WN_r = 8'b11000100;
+                WN_i = 8'b11100111;
             end
-            // 48: begin
-            //     WN_r = 10'b00111011;
-            //     WN_i = 10'b00011000;
-            // end
             default: begin
-                WN_r = 10'b00000000;
-                WN_i = 10'b00000000;
+                WN_r = 8'b00000000;
+                WN_i = 8'b00000000;
             end
         endcase
     end

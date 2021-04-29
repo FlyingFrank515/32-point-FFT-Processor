@@ -93,64 +93,64 @@ module CTRL16(
                 WN_i = 8'b00000000;
             end
             34: begin
+                WN_r = 8'b00111110;
+                WN_i = 8'b11110011;
+            end
+            35: begin
                 WN_r = 8'b00111011;
                 WN_i = 8'b11100111;
             end
-            35: begin
+            36: begin
+                WN_r = 8'b00110101;
+                WN_i = 8'b11011100;
+            end
+            37: begin
                 WN_r = 8'b00101101;
                 WN_i = 8'b11010010;
             end
-            36: begin
-                WN_r = 8'b00011000;
-                WN_i = 8'b11000101;
+            38: begin
+                WN_r = 8'b00100011;
+                WN_i = 8'b11001010;
             end
-            37: begin
+            39: begin
+                WN_r = 8'b00011000;
+                WN_i = 8'b11000100;
+            end
+            40: begin
+                WN_r = 8'b00001100;
+                WN_i = 8'b11000001;
+            end
+            41: begin
                 WN_r = 8'b00000000;
                 WN_i = 8'b11000000;
             end
-            38: begin
-                WN_r = 8'b11100111;
-                WN_i = 8'b11000101;
+            42: begin
+                WN_r = 8'b11110011;
+                WN_i = 8'b11000001;
             end
-            39: begin
+            43: begin
+                WN_r = 8'b11100111;
+                WN_i = 8'b11000100;
+            end
+            44: begin
+                WN_r = 8'b11011100;
+                WN_i = 8'b11001010;
+            end
+            45: begin
                 WN_r = 8'b11010010;
                 WN_i = 8'b11010010;
             end
-            40: begin
-                WN_r = 8'b11000101;
-                WN_i = 8'b11100111;
-            end
-            41: begin
-                WN_r = 8'b11000000;
-                WN_i = 8'b00000000;
-            end
-            42: begin
-                WN_r = 8'b11000101;
-                WN_i = 8'b00011000;
-            end
-            43: begin
-                WN_r = 8'b11010010;
-                WN_i = 8'b00101101;
-            end
-            44: begin
-                WN_r = 8'b11100111;
-                WN_i = 8'b00111011;
-            end
-            45: begin
-                WN_r = 8'b00000000;
-                WN_i = 8'b01000000;
-            end
             46: begin
-                WN_r = 8'b00011000;
-                WN_i = 8'b00111011;
+                WN_r = 8'b11001010;
+                WN_i = 8'b11011100;
             end
             47: begin
-                WN_r = 8'b00101101;
-                WN_i = 8'b00101101;
+                WN_r = 8'b11000100;
+                WN_i = 8'b11100111;
             end
             48: begin
-                WN_r = 8'b00111011;
-                WN_i = 8'b00011000;
+                WN_r = 8'b11000001;
+                WN_i = 8'b11110011;
             end
             default: begin
                 WN_r = 8'b00000000;
