@@ -3,6 +3,9 @@ from math import e
 import math
 import matplotlib.pyplot as plt
 
+#------------------------------------------
+round_choice = 0
+#------------------------------------------
 string_in = sys.argv[1]
 f = open(string_in, "r")
 points = f.read()
@@ -30,10 +33,15 @@ for i in range(0, half*2):
         temp = (pt_float[i-half] - pt_float[i])*e**((-1)*complex(0,1)*2*math.pi*(i-16)/32)
     
     # round 
-    temp2 = complex(round( temp.real , 2  ), round( temp.imag , 2  ))
+    if(round_choice):
+        temp2 = complex(round( temp.real , 2  ), round( temp.imag , 2  ))
+        f.write(str(temp2)+"\n")
+        stage1_o.append(temp2)
+    else:
+        f.write(str(temp)+"\n")
+        stage1_o.append(temp)
 
-    f.write(str(temp2)+"\n")
-    stage1_o.append(temp2)
+
 f.write("\n")
 
 stage2_o = []
@@ -46,9 +54,13 @@ for j in range(0, 2):
             temp = (stage1_o[i-8+16*j] - stage1_o[i+16*j])*e**((-1)*complex(0,1)*2*math.pi*(i-8)/16)
         
         # round 
-        temp2 = complex(round( temp.real , 2  ), round( temp.imag , 2  ))
-        f.write(str(temp2)+"\n")
-        stage2_o.append(temp2)
+        if(round_choice):
+            temp2 = complex(round( temp.real , 2  ), round( temp.imag , 2  ))
+            f.write(str(temp2)+"\n")
+            stage2_o.append(temp2)
+        else:
+            f.write(str(temp)+"\n")
+            stage2_o.append(temp)
 f.write("\n")
 
 stage3_o = []
@@ -60,9 +72,13 @@ for j in range(0, 4):
         else:
             temp = (stage2_o[i-4+8*j] - stage2_o[i+8*j])*e**((-1)*complex(0,1)*2*math.pi*(i-4)/8)
         # round 
-        temp2 = complex(round( temp.real , 2  ), round( temp.imag , 2  ))
-        f.write(str(temp2)+"\n")
-        stage3_o.append(temp2)
+        if(round_choice):
+            temp2 = complex(round( temp.real , 2  ), round( temp.imag , 2  ))
+            f.write(str(temp2)+"\n")
+            stage3_o.append(temp2)
+        else:
+            f.write(str(temp)+"\n")
+            stage3_o.append(temp)
 f.write("\n")
 
 stage4_o = []
@@ -74,9 +90,13 @@ for j in range(0, 8):
         else:
             temp = (stage3_o[i-2+4*j] - stage3_o[i+4*j])*e**((-1)*complex(0,1)*2*math.pi*(i-2)/4)
         # round 
-        temp2 = complex(round( temp.real , 2  ), round( temp.imag , 2  ))
-        f.write(str(temp2)+"\n")
-        stage4_o.append(temp2)
+        if(round_choice):
+            temp2 = complex(round( temp.real , 2  ), round( temp.imag , 2  ))
+            f.write(str(temp2)+"\n")
+            stage4_o.append(temp2)
+        else:
+            f.write(str(temp)+"\n")
+            stage4_o.append(temp)
 f.write("\n")
 
 stage5_o = []
@@ -89,9 +109,13 @@ for j in range(0, 16):
             temp = (stage4_o[i-1+2*j] - stage4_o[i+2*j])*e**((-1)*complex(0,1)*2*math.pi*(i-1)/2)
         
         # round 
-        temp2 = complex(round( temp.real , 2  ), round( temp.imag , 2  ))
-        f.write(str(temp2)+"\n")
-        stage5_o.append(temp2)
+        if(round_choice):
+            temp2 = complex(round( temp.real , 2  ), round( temp.imag , 2  ))
+            f.write(str(temp2)+"\n")
+            stage5_o.append(temp2)
+        else:
+            f.write(str(temp)+"\n")
+            stage5_o.append(temp)
 f.write("\n")
 
 sort_real = [0.0]*32

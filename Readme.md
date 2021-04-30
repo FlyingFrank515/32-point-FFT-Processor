@@ -16,8 +16,10 @@ We can use shift registers to design single path delay, which make us be able to
 1. Use python (floating point) to verify whether the alogrithm is right (use hardware-like computation)
 2. change floating point in python to fixed-point gradually
 3. Determine the accuracy in verilog and implement it (how many bits in fractional part ??)
+4. Sorting may be wrong, check it!
 
 ## Hardware TODO ##
 1. In transmitting data between stages, use more bits. However, round to less bit after final stage.
 2. Sorting (bit-reversal) has to output real-part and imaginary part one by one (not together)
 3. Twiddle factor may have more bit (ensure accuracy).
+4. Sorting may be wrong, check it!

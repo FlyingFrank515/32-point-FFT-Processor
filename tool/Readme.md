@@ -47,3 +47,5 @@ command: python each_stage.py [input_file_name]
 input: txt file of input pattern(floating point)
 
 output: txt files containing serial out of each stage
+
+Note that there is a variable "round_choice", you can adjust it to 0 or 1 to control whether the output of each stage should be round to 2-digit.
