@@ -19,7 +19,7 @@ plot(f,real(y));
 title('Real Part');
 subplot(2,1,2);
 plot(f,imag(y));
-title('Iamginary Part');
+title('Imaginary Part');
 sgtitle('Radix-II FFT');
 
 % matlab fft

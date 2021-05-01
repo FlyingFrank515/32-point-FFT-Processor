@@ -4,7 +4,7 @@
 
 `include "FFT.v"             
 
-// simulation commmand: ncverilog stage1_tb.v +access+r
+// simulation commmand: ncverilog FFT_ns_tb.v +access+r
 
 module FFT_ns_tb;
     

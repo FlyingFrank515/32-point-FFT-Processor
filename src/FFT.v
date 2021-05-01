@@ -14,6 +14,7 @@
 `include "STAGE3.v"
 `include "STAGE4.v"
 `include "STAGE5.v"
+`include "sorting.v"
 
 module FFT(
     input                   clk,
@@ -92,5 +93,16 @@ module FFT(
         .data_out_r(X_r),
         .data_out_i(X_i)
     );
+    SORTING sort(
+        .clk(clk),
+        .rst_n(rst_n),
+        .start_sorting(finish),
+        .out_r,
+        .out_i,
+        .answer_r,
+        .answer_i
+);
+
+
 
 endmodule

@@ -1,6 +1,6 @@
 module SORTING(
     clk,
-    rst,
+    rst_n,
     start_sorting,
     out_r,
     out_i,
@@ -45,7 +45,7 @@ module SORTING(
 */
 
 integer               i, j;
-input                 clk, rst, start_sorting;
+input                 clk, rst_n, start_sorting;
 reg                   sort, next_sort;
 reg            [4:0]  count, next_count;
 input  signed  [9:0] out_r;
@@ -205,8 +205,8 @@ always@(*) begin
     end
 end
 
-always@(posedge clk or negedge rst) begin
-    if(~rst)begin
+always@(posedge clk or negedge rst_n) begin
+    if(!rst_n)begin
         prev_out_r <= 0;
         prev_out_i <= 0;
         for (i = 0; i < 31; i = i+1) begin
@@ -232,6 +232,9 @@ always@(posedge clk) begin
         answer_r[9:0] = result_r[j];
         answer_i[7:0] = result_i[j];
         j = j + 1;
+    end
+    if(j == 5'd31)begin
+        $finish;
     end
 end
 endmodule
