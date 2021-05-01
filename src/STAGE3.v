@@ -24,7 +24,7 @@ module STAGE3(
     reg  valid_i_r;
     
     wire [1:0] state_bus;
-    wire [1:0] WN;
+    wire [7:0] WN_r_bus, WN_i_bus;
     wire [15:0] SR_r_bus, SR_i_bus;
     wire [15:0] FB_r_bus, FB_i_bus;
     wire [14:0] data_r_bus, data_i_bus;
@@ -40,7 +40,8 @@ module STAGE3(
         .state(state_bus),
         .data_out_r(data_r_bus),
         .data_out_i(data_i_bus),
-        .WN(WN)
+        .WN_r(WN_r_bus),
+        .WN_i(WN_i_bus)
     );
     
     SR4 shiftregister(
@@ -59,9 +60,9 @@ module STAGE3(
         .A_i(data_i_bus),
         .B_r(FB_r_bus),
         .B_i(FB_i_bus),
-        .WN(WN),
-
-
+        .WN_r(WN_r_bus),
+        .WN_i(WN_i_bus),
+        
         .out_r(data_out_r),
         .out_i(data_out_i),
         .SR_r(SR_r_bus),

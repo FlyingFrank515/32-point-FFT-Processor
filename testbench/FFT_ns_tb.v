@@ -46,8 +46,8 @@ module FFT_ns_tb;
     always begin #(`CYCLE/2) clk = ~clk; end
 
     initial begin
-        $dumpfile("FFT_no_sorting");
-        $dumpvars;
+        $fsdbDumpfile("FFT_ns.fsdb");
+        $fsdbDumpvars(0, FFT_ns_tb, "+mda");
     end
 
     initial #(`TIME_OUT) begin

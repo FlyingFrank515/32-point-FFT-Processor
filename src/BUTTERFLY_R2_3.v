@@ -18,7 +18,8 @@ module BUTTERFLY_R2_3(
     input signed [14:0]         A_i,
     input signed [15:0]         B_r,
     input signed [15:0]         B_i,
-    input [1:0]                 WN,
+    input signed [7:0]          WN_r,
+    input signed [7:0]          WN_i,
     
     output reg signed [15:0]    out_r,
     output reg signed [15:0]    out_i,
@@ -38,10 +39,17 @@ module BUTTERFLY_R2_3(
     parameter THREE     = 2'b11;
     
     // Wire-Reg declaration
-    wire [15:0] B_r_neg, B_i_neg;
+    wire signed [23:0] mul13, mul24, mul14, mul23;
+    wire signed [24:0] tempA, tempB;
+
+    // Combinational part
+    assign mul13 = B_r * WN_r;
+    assign mul24 = B_i * WN_i;
+    assign mul14 = B_r * WN_i;
+    assign mul23 = B_i * WN_r;
     
-    assign B_r_neg = ~B_r + 1;
-    assign B_i_neg = ~B_i + 1;
+    assign tempA = mul13 - mul24;
+    assign tempB = mul14 + mul23;
     
     always@(*) begin
         case(state)          
@@ -73,28 +81,8 @@ module BUTTERFLY_R2_3(
             // In second state, multiply delayed-data (h1~hN) with corresponding W (
             // W^0~W^(N-1)/2 and output it
             SECOND: begin
-                case(WN)
-                    ZERO: begin
-                        out_r = B_r;
-                        out_i = B_i;
-                    end
-                    ONE: begin
-                        out_r = B_i;
-                        out_i = B_r_neg;
-                    end
-                    TWO: begin
-                        out_r = B_r_neg;
-                        out_i = B_i_neg;
-                    end
-                    THREE: begin
-                        out_r = B_i_neg;
-                        out_i = B_r;
-                    end
-                    default: begin
-                        out_r = B_i_neg;
-                        out_i = B_r;
-                    end
-                endcase
+                out_r = tempA[21:6];
+                out_i = tempB[21:6];
                 SR_r = {A_r[14], A_r};
                 SR_i = {A_i[14], A_i};
             end

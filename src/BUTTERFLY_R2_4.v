@@ -38,7 +38,6 @@ module BUTTERFLY_R2_4(
     parameter THREE     = 2'b11;
     
     assign B_r_neg = ~B_r + 1;
-    assign B_i_neg = ~B_i + 1;
     
     always@(*) begin
         case(state)          
@@ -75,9 +74,9 @@ module BUTTERFLY_R2_4(
                         out_r = B_r;
                         out_i = B_i;
                     end
-                    TWO: begin
-                        out_r = B_r_neg;
-                        out_i = B_i_neg;
+                    ONE: begin
+                        out_r = B_i;
+                        out_i = B_r_neg;
                     end
                     default: begin
                         out_r = B_r;

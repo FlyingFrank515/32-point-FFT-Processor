@@ -39,3 +39,13 @@ command: python 16bit_fixed_to_double.py  [input_file_name]
 ​	ex: python 16bit_fixed_to_double.py ../stage1_o.txt
 
 ​	The program will read data from "../stage1_o.txt" and output data to a file name "../stage1_o**_double**.txt" 
+
+### each_stage.py ###
+
+command: python each_stage.py [input_file_name]
+
+input: txt file of input pattern(floating point)
+
+output: txt files containing serial out of each stage
+
+Note that there is a variable "round_choice", you can adjust it to 0 or 1 to control whether the output of each stage should be round to 2-digit.

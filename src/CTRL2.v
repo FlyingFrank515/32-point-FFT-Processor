@@ -94,7 +94,7 @@ module CTRL2(
         // This is +1, -1 or 0, so the format will changed to 2bit only
         case(count)
             5:      WN = ZERO;
-            6:      WN = TWO;
+            6:      WN = ONE;
             default: WN = ZERO;
         endcase
     end
