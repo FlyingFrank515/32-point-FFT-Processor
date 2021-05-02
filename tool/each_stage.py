@@ -11,6 +11,9 @@ string_in = sys.argv[1]
 f = open(string_in, "r")
 points = f.read()
 f.close()
+def quan(x, i):
+    out = math.floor((x * 2 ** i ) + 0.5) / (2 ** i)
+    return out
 
 points_list = points.split('\n')
 points_list.pop(-1)
@@ -18,9 +21,9 @@ points_list.pop(-1)
 pt_float = []
 
 for i in points_list:
-    pt_float.append(float(i))
+    pt_float.append(quan(float(i), 8))  # edit input fractional bit here(binary) 
 
-# print(pt_float)
+#print(pt_float)
 
 f = open("each_stage.txt", "w")
 stage1_o = []
@@ -31,11 +34,18 @@ for i in range(0, half*2):
     if(i < half):
         temp = pt_float[i] + pt_float[i+half]
     else:
-        temp = (pt_float[i-half] - pt_float[i])*e**((-1)*complex(0,1)*2*math.pi*(i-16)/32)
+        exp_real = (e**((-1)*complex(0,1)*2*math.pi*(i-16)/32)).real
+        #print(exp_real)
+        exp_imag = (e**((-1)*complex(0,1)*2*math.pi*(i-16)/32)).imag
+        #print(exp_imag)
+        #print(e**((-1)*complex(0,1)*2*math.pi*(i-16)/32))
+        temp = (pt_float[i-half] - pt_float[i])*complex(quan(exp_real, 6), quan(exp_imag, 6)) # edit twiddle factor fractional bit here(binary)
+        #temp = (pt_float[i-half] - pt_float[i])*e**((-1)*complex(0,1)*2*math.pi*(i-16)/32)
     
     # round 
     if(round_choice):
-        temp2 = complex(round( temp.real , 2  ), round( temp.imag , 2  ))
+        #temp2 = complex(round(temp.real, 2), round(temp.imag, 2))
+        temp2 = complex(quan(temp.real, 8), quan(temp.imag, 8))  # edit stage1~2 fractional bit here(binary)
         f.write(str(temp2)+"\n")
         stage1_o.append(temp2)
     else:
@@ -52,11 +62,15 @@ for j in range(0, 2):
         if(i < 8): 
             temp = stage1_o[i+16*j] + stage1_o[i+8+16*j]
         else:
-            temp = (stage1_o[i-8+16*j] - stage1_o[i+16*j])*e**((-1)*complex(0,1)*2*math.pi*(i-8)/16)
+            exp_real = (e**((-1)*complex(0,1)*2*math.pi*(i-8)/16)).real
+            exp_imag = (e**((-1)*complex(0,1)*2*math.pi*(i-8)/16)).imag
+            #temp = (stage1_o[i-8+16*j] - stage1_o[i+16*j])*e**((-1)*complex(0,1)*2*math.pi*(i-8)/16)
+            temp = (stage1_o[i-8+16*j] - stage1_o[i+16*j])*complex(quan(exp_real, 6), quan(exp_imag, 6)) # edit twiddle factor fractional bit here(binary)
         
         # round 
         if(round_choice):
-            temp2 = complex(round( temp.real , 2  ), round( temp.imag , 2  ))
+            #temp2 = complex(round( temp.real , 2  ), round( temp.imag , 2  ))
+            temp2 = complex(quan(temp.real, 8), quan(temp.imag, 8))  # edit stage2~3 fractional bit here(binary)
             f.write(str(temp2)+"\n")
             stage2_o.append(temp2)
         else:
@@ -71,10 +85,14 @@ for j in range(0, 4):
         if(i < 4): 
             temp = stage2_o[i+8*j] + stage2_o[i+4+8*j]
         else:
-            temp = (stage2_o[i-4+8*j] - stage2_o[i+8*j])*e**((-1)*complex(0,1)*2*math.pi*(i-4)/8)
+            exp_real = (e**((-1)*complex(0,1)*2*math.pi*(i-4)/8)).real
+            exp_imag = (e**((-1)*complex(0,1)*2*math.pi*(i-4)/8)).imag
+            #temp = (stage2_o[i-4+8*j] - stage2_o[i+8*j])*e**((-1)*complex(0,1)*2*math.pi*(i-4)/8)
+            temp = (stage2_o[i-4+8*j] - stage2_o[i+8*j])*complex(quan(exp_real, 6), quan(exp_imag, 6)) # edit twiddle factor fractional bit here(binary)
         # round 
         if(round_choice):
-            temp2 = complex(round( temp.real , 2  ), round( temp.imag , 2  ))
+            #temp2 = complex(round( temp.real , 2  ), round( temp.imag , 2  ))
+            temp2 = complex(quan(temp.real, 8), quan(temp.imag, 8))  # edit stage3~4 fractional bit here(binary)
             f.write(str(temp2)+"\n")
             stage3_o.append(temp2)
         else:
@@ -89,10 +107,14 @@ for j in range(0, 8):
         if(i < 2): 
             temp = stage3_o[i+4*j] + stage3_o[i+2+4*j]
         else:
-            temp = (stage3_o[i-2+4*j] - stage3_o[i+4*j])*e**((-1)*complex(0,1)*2*math.pi*(i-2)/4)
+            exp_real = (e**((-1)*complex(0,1)*2*math.pi*(i-2)/4)).real
+            exp_imag = (e**((-1)*complex(0,1)*2*math.pi*(i-2)/4)).imag
+            #temp = (stage3_o[i-2+4*j] - stage3_o[i+4*j])*e**((-1)*complex(0,1)*2*math.pi*(i-2)/4)
+            temp = (stage3_o[i-2+4*j] - stage3_o[i+4*j])*complex(quan(exp_real, 6), quan(exp_imag, 6)) # edit twiddle factor fractional bit here(binary)
         # round 
         if(round_choice):
-            temp2 = complex(round( temp.real , 2  ), round( temp.imag , 2  ))
+            #temp2 = complex(round( temp.real , 2  ), round( temp.imag , 2  ))
+            temp2 = complex(quan(temp.real, 8), quan(temp.imag, 8))  # edit stage4~5 fractional bit here(binary)
             f.write(str(temp2)+"\n")
             stage4_o.append(temp2)
         else:
@@ -107,11 +129,15 @@ for j in range(0, 16):
         if(i < 1): 
             temp = stage4_o[i+2*j] + stage4_o[i+1+2*j]
         else:
-            temp = (stage4_o[i-1+2*j] - stage4_o[i+2*j])*e**((-1)*complex(0,1)*2*math.pi*(i-1)/2)
+            exp_real = (e**((-1)*complex(0,1)*2*math.pi*(i-1)/2)).real
+            exp_imag = (e**((-1)*complex(0,1)*2*math.pi*(i-1)/2)).imag
+            #temp = (stage4_o[i-1+2*j] - stage4_o[i+2*j])*e**((-1)*complex(0,1)*2*math.pi*(i-1)/2)
+            temp = (stage4_o[i-1+2*j] - stage4_o[i+2*j])*complex(quan(exp_real, 6), quan(exp_imag, 6)) # edit twiddle factor fractional bit here(binary)
         
         # round 
         if(round_choice):
-            temp2 = complex(round( temp.real , 2  ), round( temp.imag , 2  ))
+            #temp2 = complex(round( temp.real , 2  ), round( temp.imag , 2  ))
+            temp2 = complex(quan(temp.real, 8), quan(temp.imag, 8)) # edit final fractional bit here(binary)
             f.write(str(temp2)+"\n")
             stage5_o.append(temp2)
         else:
