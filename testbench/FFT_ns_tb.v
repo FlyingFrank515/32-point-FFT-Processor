@@ -10,9 +10,9 @@ module FFT_ns_tb;
     
     integer i, j, f;
     reg clk, rst_n, valid, stop;
-    reg [7:0] before_ff [0:31];
-    reg [7:0] data_in_r;
-    wire [17:0] data_out_i, data_out_r;
+    reg [10:0] before_ff [0:31];
+    reg [10:0] data_in_r;
+    wire [16:0] data_out;
     wire finish;
 
     FFT fft(
@@ -22,12 +22,11 @@ module FFT_ns_tb;
         .x_r(data_in_r),
     
         .finish(finish),
-        .X_r(data_out_r),
-        .X_i(data_out_i)
+        .answer(data_out)
     );   
 
     initial	begin
-        $readmemb ("input_8bit_1.txt",  before_ff);
+        $readmemb ("input_11bit_1.txt",  before_ff);
         f = $fopen("fft_ns_o.txt","w");
     end
 
@@ -79,13 +78,13 @@ module FFT_ns_tb;
         end
     end
 
-    always @(negedge clk) begin
+    always @(posedge clk) begin
         if(finish) begin
-            $fwrite(f,"%b/%b\n", data_out_r, data_out_i);
-            $display("Output %0d: Real->%b / Img->%b", j , data_out_r, data_out_i);
+            $fwrite(f,"%b\n", data_out);
+            $display("Output %0d: %b ", j , data_out);
             j = j + 1;
         end
-        if(j > 31) begin
+        if(j > 63) begin
             $fclose(f);
             $display("Finishing Fast fourier transform!");
             $display("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠔⠉⠱⠀⠀⠀⠀⠀⠀");
@@ -105,10 +104,5 @@ module FFT_ns_tb;
             $finish;
         end
     end
-
-    // always @(negedge finish)begin
-    //     $fclose(f);
-    //     $finish;
-    // end
    
 endmodule

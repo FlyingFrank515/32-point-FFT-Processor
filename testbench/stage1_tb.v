@@ -9,8 +9,8 @@ module STAGE1_tb;
     
     integer i, j, f;
     reg clk, rst_n, valid, stop;
-    reg [7:0] before_ff [0:31];
-    reg [7:0] data_in_r;
+    reg [10:0] before_ff [0:31];
+    reg [10:0] data_in_r;
     wire [13:0] data_out_i, data_out_r;
     wire finish;
 
@@ -19,7 +19,7 @@ module STAGE1_tb;
         .rst_n(rst_n),
         .valid_i(valid),
         .data_in_r(data_in_r),
-        .data_in_i(8'd0),
+        .data_in_i(10'd0),
 
         .valid_o(finish),
         .data_out_r(data_out_r),
@@ -27,7 +27,7 @@ module STAGE1_tb;
     );     
 
     initial	begin
-        $readmemb ("input_8bit_1.txt",  before_ff);
+        $readmemb ("input_11bit_1.txt",  before_ff);
         f = $fopen("stage1_o.txt","w");
     end
 
@@ -53,11 +53,10 @@ module STAGE1_tb;
     always @(negedge clk)begin
         if(i < 32) begin
             valid = 1; 
-            // data_in_r = {{5{before_ff[i][7]}}, before_ff[i], 3'b000};
             data_in_r = before_ff[i];
             i = i+1;      
         end
-        else if(i < 51) begin
+        else if(i < 49) begin
             data_in_r = 0;
             i = i+1;
         end

@@ -5,7 +5,7 @@ module SORTING(
     out_r,
     out_i,
     answer,
-    finish
+    seq
 );
 
 /*
@@ -45,16 +45,15 @@ module SORTING(
 *****************************
 */
 
-integer               i, j;
+integer               i, j, next_j;
 input                 clk, rst_n, start_sorting;
-reg                   sort, next_sort, seq;
+reg                   sort, next_sort, finish, n_seq;
 reg            [4:0]  count, next_count;
 input  signed  [16:0] out_r;
 input  signed  [16:0] out_i;
 output reg signed  [16:0] answer;
-output reg            finish;
-reg    signed  [16:0] result_r[0:31];
-reg    signed  [16:0] result_i[0:31];
+output reg            seq;
+reg    signed  [16:0] result[0:63];
 reg    signed  [16:0] prev_out_r;
 reg    signed  [16:0] prev_out_i;
 reg    signed  [16:0] next_result_r[0:31];
@@ -65,6 +64,7 @@ initial begin
     j = 0;
     seq = 0;
     finish = 0;
+    next_j = 0;
 end
 always@(posedge start_sorting) begin
     sort = 1'b1;
@@ -72,6 +72,10 @@ end
 
 always@(*) begin
     next_sort = sort;
+    n_seq = seq;
+    if(seq) begin
+        next_j = j;
+    end
     if(next_sort) begin
         next_count = count;
         case(next_count)
@@ -203,7 +207,7 @@ always@(*) begin
                 next_result_r[31] = prev_out_r;
                 next_result_i[31] = prev_out_i;
                 next_sort = 0;
-                seq = 1'b1;
+                n_seq = 1'b1;
             end
         endcase
     end
@@ -214,36 +218,40 @@ always@(posedge clk or negedge rst_n) begin
         prev_out_r <= 0;
         prev_out_i <= 0;
         for (i = 0; i < 31; i = i+1) begin
-            result_r[i] <= 0;
-            result_i[i] <= 0;
+            result[i] <= 0;
         end
+        j <= 0;
+        answer <= 0;
         sort <= 0;
         count <= 0;
+        seq <= 0;
     end
     else begin
         prev_out_r <= out_r;
         prev_out_i <= out_i;
-        for (i = 0; i < 31; i = i+1) begin
-            result_r[i] <= next_result_r[i];
-            result_i[i] <= prev_out_i[i];
+        seq <= n_seq;
+        for (i = 0; i < 32; i = i+1) begin
+            result[i] <= next_result_r[i];
+            result[i+32] <= next_result_i[i];
         end
         sort <= next_sort;
+        j <= next_j + 1;
+        answer <= result[j];
         if(start_sorting)count <= next_count + 1;
     end
 end
-always@(posedge clk) begin
-    if(seq)begin
-        if (j <= 31) begin
-        answer = result_r[j];
-        end
-        else if(j <= 63) begin
-        answer = result_i[j - 32];
-        end
-        j = j + 1;
-    end
-    if(j == 64)begin
-        finish = 1'b1;
-        $finish;
-    end
-end
+// always@(posedge clk) begin
+//     if(seq)begin
+//         if (j < 32) begin
+//         answer = result_r[j];
+//         end
+//         else if(j < 64) begin
+//         answer = result_i[j - 32];
+//         end
+//         j = j + 1;
+//     end
+//     if(j == 64)begin
+//         finish = 1'b1;
+//     end
+// end
 endmodule

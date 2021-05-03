@@ -214,6 +214,16 @@ sort_imag[23] = stage5_o[29].imag
 sort_imag[15] = stage5_o[30].imag
 sort_imag[31] = stage5_o[31].imag
 
+f.write("after sorting"+"\n")
+
+for i in range(0,32):
+    if (sort_imag[i] < 0):
+        f.write(str(sort_real[i])+str(sort_imag[i])+"j\n")
+    else:
+        f.write(str(sort_real[i])+"+"+str(sort_imag[i])+"j\n")
+
+
+
 t = range(32)
 plt.plot(t,sort_real) 
 plt.show() 

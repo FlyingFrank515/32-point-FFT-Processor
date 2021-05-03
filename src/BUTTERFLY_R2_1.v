@@ -86,8 +86,8 @@ module BUTTERFLY_R2_1(
             // In second state, multiply delayed-data (h1~hN) with corresponding W (
             // W^0~W^(N-1)/2 and output it
             SECOND: begin
-                out_r = tempA[18:5];
-                out_i = tempB[18:5];
+                out_r = {tempA[18:5]};
+                out_i = {tempB[18:5]};
                 SR_r = A_ext_r;
                 SR_i = A_ext_i;
             end

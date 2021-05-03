@@ -36,7 +36,7 @@ module FFT(
     wire [15:0] data_r_bus_3, data_i_bus_3;
     wire [16:0] data_r_bus_4, data_i_bus_4;
     wire [16:0] X_r, X_i;
-    reg         done;
+    wire         done;
     // wire [13:0] data_r_bus_1, data_i_bus_1;
 
     STAGE1 stg1(
@@ -106,7 +106,7 @@ module FFT(
         .out_r(X_r),
         .out_i(X_i),
         .answer(answer),
-        .finish(finish)
+        .seq(finish)
 );
 
 

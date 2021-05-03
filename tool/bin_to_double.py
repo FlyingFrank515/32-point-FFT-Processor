@@ -3,8 +3,7 @@ import math
 import sys
 
 def double(x):
-    # total i+1 bit, behind . :j, front of . : i+1-j
-    i = 13
+    i = 16
     j = 7
     k = i - j
     exp = 0.5**j
@@ -28,10 +27,13 @@ points_list.pop(-1)
 
 pt_real = []
 pt_imag = []
-
+j = 0
 for i in points_list:
-    pt_real.append(double(i[:14]))
-    pt_imag.append(double(i[15:]))
+    if (j < 32):
+        pt_real.append(double(i))
+    else:
+        pt_imag.append(double(i))
+    j+=1
 
 string_out = string_in[0:-4] + "_double" + string_in[-4:]
 f = open(string_out, "w")
@@ -43,3 +45,4 @@ while(i<len(pt_real)):
         f.write(str(pt_real[i]) + "+" + str(pt_imag[i]) + "i" + '\n')
     i += 1
 f.close()
+
