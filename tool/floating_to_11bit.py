@@ -6,12 +6,13 @@ def twos_comp(x):
     output = ''
     i = 10
     # 5 bit in front, 6 bit behind
-    exp = 16
+    front = 5
+    exp = 2**(front-1)
     if x >= 0:
         output = output + '0'
     else:
         output = output + '1'
-        x = x + 32
+        x = x + 2*exp
 
     while(i > 0):
         if(i == 8):
