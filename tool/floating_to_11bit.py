@@ -5,8 +5,9 @@ import sys
 def twos_comp(x):
     output = ''
     i = 10
-    # 6 bit in front, 5 bit behind
-    front = 6
+    i0 = 10
+    # 5 bit in front, 6 bit behind
+    front = 5
     exp = 2**(front-2)
     if x >= 0:
         output = output + '0'
@@ -15,7 +16,7 @@ def twos_comp(x):
         x = x + 2*exp
 
     while(i > 0):
-        if(i == 5):
+        if(i == 1+i0-front):
             output = output + '_'
         if(x >= exp):
             x = x - exp
