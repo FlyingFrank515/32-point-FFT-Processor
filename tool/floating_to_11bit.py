@@ -5,9 +5,9 @@ import sys
 def twos_comp(x):
     output = ''
     i = 10
-    # 5 bit in front, 6 bit behind
-    front = 5
-    exp = 2**(front-1)
+    # 6 bit in front, 5 bit behind
+    front = 6
+    exp = 2**(front-2)
     if x >= 0:
         output = output + '0'
     else:
@@ -15,7 +15,7 @@ def twos_comp(x):
         x = x + 2*exp
 
     while(i > 0):
-        if(i == 8):
+        if(i == 5):
             output = output + '_'
         if(x >= exp):
             x = x - exp
@@ -44,7 +44,7 @@ for i in points_list:
 
 pt_final = []
 
-string_out = string_in[0:-6] + "_14bit" + string_in[-6:]
+string_out = string_in[0:-6] + "_11bit" + string_in[-6:]
 f = open(string_out, 'w')
 for i in pt_float:
     pt_final.append(twos_comp(i))
