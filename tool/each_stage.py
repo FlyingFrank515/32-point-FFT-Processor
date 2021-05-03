@@ -21,7 +21,7 @@ points_list.pop(-1)
 pt_float = []
 
 for i in points_list:
-    pt_float.append(quan(float(i), 8))  # edit input fractional bit here(binary) 
+    pt_float.append(quan(float(i), 6))  # edit input fractional bit here(binary) 
 
 #print(pt_float)
 
@@ -137,7 +137,7 @@ for j in range(0, 16):
         # round 
         if(round_choice):
             #temp2 = complex(round( temp.real , 2  ), round( temp.imag , 2  ))
-            temp2 = complex(quan(temp.real, 8), quan(temp.imag, 8)) # edit final fractional bit here(binary)
+            temp2 = complex(quan(temp.real, 7), quan(temp.imag, 7)) # edit final fractional bit here(binary)
             f.write(str(temp2)+"\n")
             stage5_o.append(temp2)
         else:

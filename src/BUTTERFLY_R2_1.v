@@ -9,23 +9,23 @@
 // add the flipflop to its input to ensure the existence of full 
 // access time
 // 
-// A, B, out, SR : 5-bit  integer, 3-bit fractional
+// A, B, out, SR : 5-bit  integer, 6-bit fractional
 // WN            : 2-bit  integer, 6-bit fractional
 // out           : 6-bit  integer, 8-bit fractional 
 // ===================================================================
 module BUTTERFLY_R2_1(
     input [1:0]                 state,
-    input signed [7:0]          A_r,
-    input signed [7:0]          A_i,
-    input signed [8:0]          B_r,
-    input signed [8:0]          B_i,
+    input signed [10:0]          A_r,
+    input signed [10:0]          A_i,
+    input signed [11:0]          B_r,
+    input signed [11:0]          B_i,
     input signed [7:0]          WN_r,
     input signed [7:0]          WN_i,
     
     output reg signed [13:0]    out_r,
     output reg signed [13:0]    out_i,
-    output reg signed [8:0]     SR_r,
-    output reg signed [8:0]     SR_i
+    output reg signed [11:0]     SR_r,
+    output reg signed [11:0]     SR_i
 );
     // state parameter
     parameter IDLE      = 2'b00;
@@ -34,15 +34,15 @@ module BUTTERFLY_R2_1(
     parameter WAITING   = 2'b11;
     
     // Wire-Reg declaration
-    wire signed [16:0] mul13, mul24, mul14, mul23;
-    wire signed [17:0] tempA, tempB;
-    wire signed [8:0] A_ext_r, A_ext_i;
-    wire signed [9:0] ApB_r, ApB_i;
-    wire signed [9:0] AmB_r, AmB_i;
+    wire signed [19:0] mul13, mul24, mul14, mul23;
+    wire signed [20:0] tempA, tempB;
+    wire signed [11:0] A_ext_r, A_ext_i;
+    wire signed [12:0] ApB_r, ApB_i;
+    wire signed [12:0] AmB_r, AmB_i;
 
     // Combinational part
-    assign A_ext_r = {A_r[7], A_r};
-    assign A_ext_i = {A_i[7], A_i};
+    assign A_ext_r = {A_r[10], A_r};
+    assign A_ext_i = {A_i[10], A_i};
     assign ApB_r = A_ext_r + B_r;
     assign ApB_i = A_ext_i + B_i;
     assign AmB_r = B_r - A_ext_r;
@@ -77,17 +77,17 @@ module BUTTERFLY_R2_1(
             // Also, subtract the delayed-data from input data and 
             // let it delay for N/2 cycle (send it to shift register)
             FIRST: begin
-                out_r = {ApB_r[8:0], 5'b00000};
-                out_i = {ApB_i[8:0], 5'b00000};
-                SR_r = AmB_r[8:0]; // B:from delay, A: from input
-                SR_i = AmB_i[8:0];
+                out_r = {ApB_r[12:0], 1'b0};
+                out_i = {ApB_i[12:0], 1'b0};
+                SR_r = AmB_r[11:0]; // B:from delay, A: from input
+                SR_i = AmB_i[11:0];
             end
 
             // In second state, multiply delayed-data (h1~hN) with corresponding W (
             // W^0~W^(N-1)/2 and output it
             SECOND: begin
-                out_r = tempA[14:1];
-                out_i = tempB[14:1];
+                out_r = tempA[18:5];
+                out_i = tempB[18:5];
                 SR_r = A_ext_r;
                 SR_i = A_ext_i;
             end

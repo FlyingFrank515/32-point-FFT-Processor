@@ -16,21 +16,27 @@
 `include "STAGE5.v"
 `include "sorting.v"
 
+/*
+input  : 5  + 6 bit 
+output : 10 + 7 bit
+*/
+
 module FFT(
     input                   clk,
     input                   rst_n,
     input                   valid_i,
-    input signed [7:0]      x_r,
+    input signed [10:0]      x_r,
     
     output                  finish,
-    output signed [17:0]    X_r,
-    output signed [17:0]    X_i
+    output signed [16:0]    answer
 );
     wire [0:3] valid_o_bus;
     wire [13:0] data_r_bus_1, data_i_bus_1;
     wire [14:0] data_r_bus_2, data_i_bus_2;
     wire [15:0] data_r_bus_3, data_i_bus_3;
     wire [16:0] data_r_bus_4, data_i_bus_4;
+    wire [16:0] X_r, X_i;
+    reg         done;
     // wire [13:0] data_r_bus_1, data_i_bus_1;
 
     STAGE1 stg1(
@@ -38,7 +44,7 @@ module FFT(
         .rst_n(rst_n),
         .valid_i(valid_i),
         .data_in_r(x_r),
-        .data_in_i(8'd0),
+        .data_in_i(11'd0),
 
         .valid_o(valid_o_bus[0]),
         .data_out_r(data_r_bus_1),
@@ -89,18 +95,18 @@ module FFT(
         .data_in_r(data_r_bus_4),
         .data_in_i(data_i_bus_4),
 
-        .valid_o(finish),
+        .valid_o(done),
         .data_out_r(X_r),
         .data_out_i(X_i)
     );
     SORTING sort(
         .clk(clk),
         .rst_n(rst_n),
-        .start_sorting(finish),
-        .out_r,
-        .out_i,
-        .answer_r,
-        .answer_i
+        .start_sorting(done),
+        .out_r(X_r),
+        .out_i(X_i),
+        .answer(answer),
+        .finish(finish)
 );
 
 

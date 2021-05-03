@@ -7,11 +7,11 @@
 module SR16(
     input                   clk,
     input                   rst_n,
-    input [8:0]             in_r, //(6,3)
-    input [8:0]             in_i, //(6,3)
+    input [11:0]             in_r, //(6,6)
+    input [11:0]             in_i, //(6,6)
     
-    output [8:0]            out_r,//(6,3)
-    output [8:0]            out_i //(6,3)
+    output [11:0]            out_r,//(6,6)
+    output [11:0]            out_i //(6,6)
 );
     // change LENGTH here to set up the length of this shift register
     //=================================================
@@ -21,8 +21,8 @@ module SR16(
     //=================================================
     
     integer i;
-    reg [8:0] r_bus [LENGTH-1:0];
-    reg [8:0] i_bus [LENGTH-1:0];
+    reg [11:0] r_bus [LENGTH-1:0];
+    reg [11:0] i_bus [LENGTH-1:0];
     
     assign out_r = r_bus[0];
     assign out_i = i_bus[0];

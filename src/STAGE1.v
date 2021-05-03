@@ -12,22 +12,22 @@ module STAGE1(
     input                   clk,
     input                   rst_n,
     input                   valid_i,
-    input signed [7:0]      data_in_r,
-    input signed [7:0]      data_in_i,
+    input signed [10:0]      data_in_r,
+    input signed [10:0]      data_in_i,
 
     output                  valid_o,
     output signed [13:0]    data_out_r,
     output signed [13:0]    data_out_i
 );
     // Wire Reg declaration
-    reg  [7:0] data_in_r_r, data_in_i_r;
+    reg  [10:0] data_in_r_r, data_in_i_r;
     reg  valid_i_r;
     
     wire [1:0] state_bus;
     wire [7:0] WN_r_bus, WN_i_bus;
-    wire [8:0] SR_r_bus, SR_i_bus;
-    wire [8:0] FB_r_bus, FB_i_bus;
-    wire [7:0] data_r_bus, data_i_bus;
+    wire [11:0] SR_r_bus, SR_i_bus;
+    wire [11:0] FB_r_bus, FB_i_bus;
+    wire [10:0] data_r_bus, data_i_bus;
     
     // wire [13:0] data_r_ext, data_i_ext;
     // assign data_r_ext = { {6{data_in_r[7]}}, data_in_r[7:0]};

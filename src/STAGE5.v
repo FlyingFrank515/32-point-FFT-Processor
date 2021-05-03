@@ -16,8 +16,8 @@ module STAGE5(
     input signed [16:0]     data_in_i,
 
     output                  valid_o,
-    output signed [17:0]    data_out_r,
-    output signed [17:0]    data_out_i
+    output signed [16:0]    data_out_r,
+    output signed [16:0]    data_out_i
 );
     // Wire Reg declaration
     reg  [16:0] data_in_r_r, data_in_i_r;
