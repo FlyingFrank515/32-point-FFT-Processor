@@ -10,7 +10,7 @@
 // access time
 // 
 // A, B, out, SR : 10-bit integer, 6-bit fractional
-// WN            : 2-bit  integer, 6-bit fractional
+// WN            : 2-bit  integer
 // ===================================================================
 module BUTTERFLY_R2_4(
     input [1:0]                 state,

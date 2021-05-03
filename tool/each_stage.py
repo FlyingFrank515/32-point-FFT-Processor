@@ -12,7 +12,7 @@ f = open(string_in, "r")
 points = f.read()
 f.close()
 def quan(x, i):
-    out = math.floor((x * 2 ** i ) + 0.5) / (2 ** i)
+    out = math.floor((x * 2 ** i )) / (2 ** i)
     return out
 
 points_list = points.split('\n')
@@ -45,7 +45,7 @@ for i in range(0, half*2):
     # round 
     if(round_choice):
         #temp2 = complex(round(temp.real, 2), round(temp.imag, 2))
-        temp2 = complex(quan(temp.real, 8), quan(temp.imag, 8))  # edit stage1~2 fractional bit here(binary)
+        temp2 = complex(quan(temp.real, 7), quan(temp.imag, 7))  # edit stage1~2 fractional bit here(binary)
         f.write(str(temp2)+"\n")
         stage1_o.append(temp2)
     else:
@@ -70,7 +70,7 @@ for j in range(0, 2):
         # round 
         if(round_choice):
             #temp2 = complex(round( temp.real , 2  ), round( temp.imag , 2  ))
-            temp2 = complex(quan(temp.real, 8), quan(temp.imag, 8))  # edit stage2~3 fractional bit here(binary)
+            temp2 = complex(quan(temp.real, 7), quan(temp.imag, 7))  # edit stage2~3 fractional bit here(binary)
             f.write(str(temp2)+"\n")
             stage2_o.append(temp2)
         else:
@@ -92,7 +92,7 @@ for j in range(0, 4):
         # round 
         if(round_choice):
             #temp2 = complex(round( temp.real , 2  ), round( temp.imag , 2  ))
-            temp2 = complex(quan(temp.real, 8), quan(temp.imag, 8))  # edit stage3~4 fractional bit here(binary)
+            temp2 = complex(quan(temp.real, 7), quan(temp.imag, 7))  # edit stage3~4 fractional bit here(binary)
             f.write(str(temp2)+"\n")
             stage3_o.append(temp2)
         else:
@@ -114,7 +114,7 @@ for j in range(0, 8):
         # round 
         if(round_choice):
             #temp2 = complex(round( temp.real , 2  ), round( temp.imag , 2  ))
-            temp2 = complex(quan(temp.real, 8), quan(temp.imag, 8))  # edit stage4~5 fractional bit here(binary)
+            temp2 = complex(quan(temp.real, 7), quan(temp.imag, 7))  # edit stage4~5 fractional bit here(binary)
             f.write(str(temp2)+"\n")
             stage4_o.append(temp2)
         else:
