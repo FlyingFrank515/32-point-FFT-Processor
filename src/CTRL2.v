@@ -93,8 +93,8 @@ module CTRL2(
         // Send the exp(-j*2*pi*n/4) where n go from 0 to 3
         // This is +1, -1 or 0, so the format will changed to 2bit only
         case(count)
-            5:      WN = ZERO;
-            6:      WN = ONE;
+            5:      WN = ZERO; // WN = 00
+            6:      WN = ONE;  // WN = 01
             default: WN = ZERO;
         endcase
     end
