@@ -37,6 +37,7 @@ module BUTTERFLY_R2_4(
     parameter TWO       = 2'b10;
     parameter THREE     = 2'b11;
     
+    wire [16:0] B_r_neg;
     assign B_r_neg = ~B_r + 1;
     
     always@(*) begin
