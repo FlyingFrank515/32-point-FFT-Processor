@@ -7,41 +7,40 @@ module SORTING(
     answer,
     seq
 );
-
 /*
 *****************************
-*    [0] output ->  [31]    *
-*    [1] output ->  [15]    *
-*    [2] output ->  [7]     *
-*    [3] output ->  [23]    *                                              
-*    [4] output ->  [3]     *
-*    [5] output ->  [19]    *
-*    [6] output ->  [11]    *
-*    [7] output ->  [27]    *
-*    [8] output ->  [1]     *
-*    [9] output ->  [17]    *
-*    [10] output ->  [9]    *
-*    [11] output ->  [25]   *
-*    [12] output ->  [5]    *
-*    [13] output ->  [21]   *                                              
-*    [14] output ->  [13]   *
-*    [15] output ->  [29]   *
-*    [16] output ->  [0]    *
-*    [17] output ->  [16]   *
-*    [18] output ->  [8]    *
-*    [19] output ->  [24]   *
-*    [20] output ->  [4]    *
-*    [21] output ->  [20]   *
-*    [22] output ->  [12]   *
-*    [23] output ->  [28]   *                                              
-*    [24] output ->  [2]    *
-*    [25] output ->  [18]   *
-*    [26] output ->  [10]   *
-*    [27] output ->  [26]   *
-*    [28] output ->  [6]    *
-*    [29] output ->  [22]   *
-*    [30] output ->  [14]   *
-*    [31] output ->  [30]   *
+*    [0] output ->  [0]    *
+*    [1] output ->  [16]    *
+*    [2] output ->  [8]     *
+*    [3] output ->  [24]    *                                              
+*    [4] output ->  [4]     *
+*    [5] output ->  [20]    *
+*    [6] output ->  [12]    *
+*    [7] output ->  [28]    *
+*    [8] output ->  [2]     *
+*    [9] output ->  [18]    *
+*    [10] output ->  [10]    *
+*    [11] output ->  [26]   *
+*    [12] output ->  [6]    *
+*    [13] output ->  [22]   *                                              
+*    [14] output ->  [14]   *
+*    [15] output ->  [30]   *
+*    [16] output ->  [1]    *
+*    [17] output ->  [17]   *
+*    [18] output ->  [9]    *
+*    [19] output ->  [25]   *
+*    [20] output ->  [5]    *
+*    [21] output ->  [21]   *
+*    [22] output ->  [13]   *
+*    [23] output ->  [29]   *                                              
+*    [24] output ->  [3]    *
+*    [25] output ->  [19]   *
+*    [26] output ->  [11]   *
+*    [27] output ->  [27]   *
+*    [28] output ->  [7]    *
+*    [29] output ->  [23]   *
+*    [30] output ->  [15]   *
+*    [31] output ->  [31]   *
 *****************************
 */
 

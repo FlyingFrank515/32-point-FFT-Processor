@@ -1,11 +1,11 @@
 `timescale 1ns/10ps
 `define CYCLE    10           	         // Modify your clock period here
 
-`include "STAGE1.v"             
+`include "STAGE5.v"             
 
-// simulation commmand: ncverilog stage1_tb.v +access+r
+// simulation commmand: ncverilog stage5_tb.v +access+r
 
-module STAGE1_tb;
+module STAGE5_tb;
     
     integer i, j, f;
     reg clk, rst_n, valid, stop;

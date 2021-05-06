@@ -10,43 +10,43 @@ module SORTING(
 
 /*
 *****************************
-*    [0] output ->  [31]    *
-*    [1] output ->  [15]    *
-*    [2] output ->  [7]     *
-*    [3] output ->  [23]    *                                              
-*    [4] output ->  [3]     *
-*    [5] output ->  [19]    *
-*    [6] output ->  [11]    *
-*    [7] output ->  [27]    *
-*    [8] output ->  [1]     *
-*    [9] output ->  [17]    *
-*    [10] output ->  [9]    *
-*    [11] output ->  [25]   *
-*    [12] output ->  [5]    *
-*    [13] output ->  [21]   *                                              
-*    [14] output ->  [13]   *
-*    [15] output ->  [29]   *
-*    [16] output ->  [0]    *
-*    [17] output ->  [16]   *
-*    [18] output ->  [8]    *
-*    [19] output ->  [24]   *
-*    [20] output ->  [4]    *
-*    [21] output ->  [20]   *
-*    [22] output ->  [12]   *
-*    [23] output ->  [28]   *                                              
-*    [24] output ->  [2]    *
-*    [25] output ->  [18]   *
-*    [26] output ->  [10]   *
-*    [27] output ->  [26]   *
-*    [28] output ->  [6]    *
-*    [29] output ->  [22]   *
-*    [30] output ->  [14]   *
-*    [31] output ->  [30]   *
+*    [0] output ->  [0]    *
+*    [1] output ->  [16]    *
+*    [2] output ->  [8]     *
+*    [3] output ->  [24]    *                                              
+*    [4] output ->  [4]     *
+*    [5] output ->  [20]    *
+*    [6] output ->  [12]    *
+*    [7] output ->  [28]    *
+*    [8] output ->  [2]     *
+*    [9] output ->  [18]    *
+*    [10] output ->  [10]    *
+*    [11] output ->  [26]   *
+*    [12] output ->  [6]    *
+*    [13] output ->  [22]   *                                              
+*    [14] output ->  [14]   *
+*    [15] output ->  [30]   *
+*    [16] output ->  [1]    *
+*    [17] output ->  [17]   *
+*    [18] output ->  [9]    *
+*    [19] output ->  [25]   *
+*    [20] output ->  [5]    *
+*    [21] output ->  [21]   *
+*    [22] output ->  [13]   *
+*    [23] output ->  [29]   *                                              
+*    [24] output ->  [3]    *
+*    [25] output ->  [19]   *
+*    [26] output ->  [11]   *
+*    [27] output ->  [27]   *
+*    [28] output ->  [7]    *
+*    [29] output ->  [23]   *
+*    [30] output ->  [15]   *
+*    [31] output ->  [31]   *
 *****************************
 */
 
 integer               i, j, next_j;
-input                 clk, rst_n, start_sorting;
+input                 clk, rst_n, start_sorting;                  
 reg                   sort, next_sort, finish, n_seq;
 reg            [4:0]  count, next_count;
 input  signed  [16:0] out_r;
@@ -59,16 +59,7 @@ reg    signed  [16:0] prev_out_i;
 reg    signed  [16:0] next_result_r[0:31];
 reg    signed  [16:0] next_result_i[0:31];
 
-initial begin
-    count = 0;
-    j = 0;
-    seq = 0;
-    finish = 0;
-    next_j = 0;
-end
-always@(posedge start_sorting) begin
-    sort = 1'b1;
-end
+
 
 always@(*) begin
     next_sort = sort;
@@ -220,9 +211,9 @@ always@(posedge clk or negedge rst_n) begin
         for (i = 0; i < 31; i = i+1) begin
             result[i] <= 0;
         end
+        sort <= 0;
         j <= 0;
         answer <= 0;
-        sort <= 0;
         count <= 0;
         seq <= 0;
     end
@@ -235,8 +226,10 @@ always@(posedge clk or negedge rst_n) begin
             result[i+32] <= next_result_i[i];
         end
         sort <= next_sort;
-        j <= next_j + 1;
-        answer <= result[j];
+        if(n_seq) begin
+            answer <= result[j];
+            j <= next_j + 1;
+        end
         if(start_sorting)count <= next_count + 1;
     end
 end

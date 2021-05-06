@@ -14,7 +14,7 @@
 `include "STAGE3.v"
 `include "STAGE4.v"
 `include "STAGE5.v"
-`include "sorting.v"
+`include "sorting_modified.v"
 
 /*
 input  : 5  + 6 bit 

@@ -5,7 +5,7 @@ import sys
 def double(x):
     # total i+1 bit, behind . :j, front of . : i+1-j
     i = 16
-    j = 7
+    j = 6
     k = i - j
     exp = 0.5**j
     out = 0
