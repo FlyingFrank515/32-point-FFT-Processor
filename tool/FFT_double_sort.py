@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 
 def double(x):
     # total i+1 bit, behind . :j, front of . : i+1-j
-    i = 17
-    j = 8
+    i = 16
+    j = 6
     k = i - j
     exp = 0.5**j
     out = 0
@@ -31,8 +31,8 @@ pt_real = []
 pt_imag = []
 
 for i in points_list:
-    pt_real.append(double(i[:18]))
-    pt_imag.append(double(i[19:]))
+    pt_real.append(double(i[:17]))
+    pt_imag.append(double(i[18:]))
 
 string_out = string_in[0:-4] + "_double" + string_in[-4:]
 f = open(string_out, "w")
