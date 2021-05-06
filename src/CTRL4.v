@@ -22,7 +22,7 @@ module CTRL4(
     output reg [1:0]            state,
     output reg signed [14:0]    data_out_r,
     output reg signed [14:0]    data_out_i,
-    output reg [7:0]            WN_r
+    output reg [7:0]            WN_r,
     output reg [7:0]            WN_i
 
 );
