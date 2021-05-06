@@ -9,8 +9,10 @@
 // add the flipflop to its input to ensure the existence of full 
 // access time
 // 
-// A, B, out, SR : 6-bit  integer, 8-bit fractional
+// A             : 7-bit  integer, 7-bit fractional
+// B, SR         : 8-bit  integer, 7-bit fractional (extension)
 // WN            : 2-bit  integer, 6-bit fractional
+// out           : 8-bit  integer, 7-bit fractional 
 // ===================================================================
 module BUTTERFLY_R2_2(
     input [1:0]                 state,
