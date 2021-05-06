@@ -6,7 +6,7 @@
 
 // simulation commmand: ncverilog FFT_ns_tb.v +access+r
 
-module FFT_ns_tb;
+module FFT_tb;
     
     integer i, j, f;
     reg clk, rst_n, valid, stop;
@@ -27,7 +27,7 @@ module FFT_ns_tb;
 
     initial	begin
         $readmemb ("input_11bit_1.txt",  before_ff);
-        f = $fopen("fft_ns_o.txt","w");
+        f = $fopen("fft_o.txt","w");
     end
 
     initial begin
@@ -45,8 +45,8 @@ module FFT_ns_tb;
     always begin #(`CYCLE/2) clk = ~clk; end
 
     initial begin
-        $fsdbDumpfile("FFT_ns.fsdb");
-        $fsdbDumpvars(0, FFT_ns_tb, "+mda");
+        $fsdbDumpfile("FFT.fsdb");
+        $fsdbDumpvars(0, FFT_tb, "+mda");
     end
 
     initial #(`TIME_OUT) begin
