@@ -18,7 +18,6 @@
 // SYN: ncverilog CHIP_tb.v fsa0m_a_generic_core_21.lib.src +define+SYN +define+T1 +access+r
 
 
-
 module CHIP_tb;
     
     integer i, j, f, err;
