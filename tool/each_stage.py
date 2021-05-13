@@ -3,6 +3,33 @@ from math import e
 import math
 import matplotlib.pyplot as plt
 
+def quan(x, i):
+    out = math.floor((x * 2 ** i )) / (2 ** i)
+    return out
+
+def twos_comp(x):
+    output = ''
+    i = 16
+    exp = 512
+    if x >= 0:
+        output = output + '0'
+    else:
+        output = output + '1'
+        x = x + 1024
+
+    while(i > 0):
+        # if(i == 8):
+        #     output = output + '_'
+        if(x >= exp):
+            x = x - exp
+            output = output + '1'
+        else:
+            output = output + '0'
+        exp = exp / 2
+        i = i - 1
+    output = output + '\n'
+    return output
+
 #------------------------------------------
 round_choice = 1
 #------------------------------------------
@@ -11,9 +38,7 @@ string_in = sys.argv[1]
 f = open(string_in, "r")
 points = f.read()
 f.close()
-def quan(x, i):
-    out = math.floor((x * 2 ** i )) / (2 ** i)
-    return out
+
 
 points_list = points.split('\n')
 points_list.pop(-1)
@@ -26,6 +51,7 @@ for i in points_list:
 #print(pt_float)
 
 f = open("each_stage.txt", "w")
+g = open("golden.txt", "w")
 stage1_o = []
 
 f.write("stage1_output:\n")
@@ -222,14 +248,18 @@ for i in range(0,32):
     else:
         f.write(str(sort_real[i])+"+"+str(sort_imag[i])+"j\n")
 
-
-
 t = range(32)
 plt.plot(t,sort_real) 
 plt.show() 
 
 plt.plot(t,sort_imag) 
 plt.show()
+
+print("start writing golden data")
+for i in range(0,32):
+    g.write(str(twos_comp(sort_real[i])))
+for i in range(0,32):
+    g.write(str(twos_comp(sort_imag[i])))
 
 f.close()
 
