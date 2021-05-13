@@ -8,14 +8,15 @@
 
 `ifdef SYN
     `include "FFT_syn.v"
-    `include "tsmc13.v"
+    // `include "tsmc13.v"
     `define SDF
-    `define SDFFILE "./FFT_syn.sdf"
+    `define SDFFILE "FFT_syn.sdf"
 `endif
 
 // simulation (you can adjust the T to change the test data)
-// RTL: ncverilog FFT_ns_tb.v +define+RTL +define+T1 +access+r
-// SYN: ncverilog FFT_ns_tb.v +define+SYN +define+T2 +access+r
+// RTL: ncverilog CHIP_tb.v +define+RTL +define+T1 +access+r
+// SYN: ncverilog CHIP_tb.v fsa0m_a_generic_core_21.lib.src +define+SYN +define+T1 +access+r
+
 
 
 module CHIP_tb;
@@ -95,7 +96,7 @@ module CHIP_tb;
 
     initial begin
         $fsdbDumpfile("CHIP.fsdb");
-        $fsdbDumpvars(0, FFT_tb, "+mda");
+        $fsdbDumpvars(0, CHIP_tb, "+mda");
     end
 
     initial #(`TIME_OUT) begin
@@ -130,12 +131,14 @@ module CHIP_tb;
     always @(posedge clk) begin
         if(finish) begin
             $fwrite(f,"%b\n", data_out);
-            $display("Output %0d: %b ", j , data_out);
-            if(data_out != after_ff[j]) begin
+            // $display("Output %0d: %b ", j , data_out);
+            
+            // allow some error in last bit
+            if((after_ff[j] - data_out) > 1) begin
                 if(j < 32)
-                    $display("There is an error at NO.%d Real part; expected: %b/golden: %b" , j, data_out, after_ff[j]);
+                    $display("There is an error at NO.%d Real part; expected: %b / golden: %b" , j, data_out, after_ff[j]);
                 else
-                    $display("There is an error at NO.%d Imag part; expected: %b/golden: %b" , j-32, data_out, after_ff[j]);
+                    $display("There is an error at NO.%d Imag part; expected: %b / golden: %b" , j-32, data_out, after_ff[j]);
                 err = err + 1;
             end
             j = j + 1;
