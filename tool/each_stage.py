@@ -7,6 +7,16 @@ def quan(x, i):
     out = math.floor((x * 2 ** i )) / (2 ** i)
     return out
 
+# def bindigits(n, bits):
+#     s = bin(n & int("1"*bits, 2))[2:]
+#     return ("{0:0>%s}" % (bits)).format(s)
+
+# def fixed(x):
+#     x = x*64
+#     # print(x)
+#     output = bindigits(int(x), 17)
+#     # print(output)
+
 def twos_comp(x):
     output = ''
     i = 16
@@ -51,7 +61,7 @@ for i in points_list:
 #print(pt_float)
 
 f = open("each_stage.txt", "w")
-g = open("golden.txt", "w")
+g = open("golden2.txt", "w")
 stage1_o = []
 
 f.write("stage1_output:\n")
@@ -163,7 +173,7 @@ for j in range(0, 16):
         # round 
         if(round_choice):
             #temp2 = complex(round( temp.real , 2  ), round( temp.imag , 2  ))
-            temp2 = complex(quan(temp.real, 6), quan(temp.imag, 6)) # edit final fractional bit here(binary)
+            temp2 = complex(quan(temp.real,7), quan(temp.imag, 7)) # edit final fractional bit here(binary)
             f.write(str(temp2)+"\n")
             stage5_o.append(temp2)
         else:
