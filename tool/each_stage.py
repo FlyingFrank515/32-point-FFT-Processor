@@ -20,12 +20,12 @@ def quan(x, i):
 def twos_comp(x):
     output = ''
     i = 16
-    exp = 512
+    exp = 256
     if x >= 0:
         output = output + '0'
     else:
         output = output + '1'
-        x = x + 1024
+        x = x + 512
 
     while(i > 0):
         # if(i == 8):

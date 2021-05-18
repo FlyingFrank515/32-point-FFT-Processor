@@ -133,7 +133,7 @@ module CHIP_tb;
             // $display("Output %0d: %b ", j , data_out);
             
             // allow some error in last bit
-            if((after_ff[j] - data_out) > 1) begin
+            if((after_ff[j] != data_out)) begin
                 if(j < 32)
                     $display("There is an error at NO.%d Real part; expected: %b / golden: %b" , j, data_out, after_ff[j]);
                 else
