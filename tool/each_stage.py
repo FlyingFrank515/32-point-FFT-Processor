@@ -61,7 +61,7 @@ for i in points_list:
 #print(pt_float)
 
 f = open("each_stage.txt", "w")
-g = open("golden2.txt", "w")
+g = open("golden.txt", "w")
 stage1_o = []
 
 f.write("stage1_output:\n")

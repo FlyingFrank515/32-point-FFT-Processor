@@ -1,4 +1,6 @@
-*.txt
+/tool/*.txt
+/*.txt
 *.xlsx
 *.tcl
 *.setup
+*.draw.io
