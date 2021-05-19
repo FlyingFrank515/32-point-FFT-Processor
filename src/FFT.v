@@ -18,7 +18,7 @@
 
 /*
 input  : 5  + 6 bit 
-output : 10 + 7 bit
+output : 11 + 6 bit
 */
 
 module FFT(

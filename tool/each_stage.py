@@ -61,7 +61,7 @@ for i in points_list:
 #print(pt_float)
 
 f = open("each_stage.txt", "w")
-g = open("golden2.txt", "w")
+g = open("golden1.txt", "w")
 stage1_o = []
 
 f.write("stage1_output:\n")
@@ -173,7 +173,7 @@ for j in range(0, 16):
         # round 
         if(round_choice):
             #temp2 = complex(round( temp.real , 2  ), round( temp.imag , 2  ))
-            temp2 = complex(quan(temp.real,7), quan(temp.imag, 7)) # edit final fractional bit here(binary)
+            temp2 = complex(quan(temp.real,6), quan(temp.imag, 6)) # edit final fractional bit here(binary)
             f.write(str(temp2)+"\n")
             stage5_o.append(temp2)
         else:
@@ -264,6 +264,7 @@ plt.show()
 
 plt.plot(t,sort_imag) 
 plt.show()
+
 
 print("start writing golden data")
 for i in range(0,32):

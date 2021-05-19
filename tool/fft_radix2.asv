@@ -2,16 +2,10 @@ t = 0:31;
 f = 0:31;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% input_1 :10sin4t                 
-% input_2 : 
-% input_3 :  sin4t
-% input_4 :10cos4t
-% input_5 : 
-% input_6 :  cos4t
-% input_7 : 
-% input_8 : 5cos4t +  sin4t
-% input_9 :  cos4t + 5sin4t
-% input_0 :  
+% input_1:10sin4t
+% input_2:5s
+%
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % NOTE: input range = (-32,32)
