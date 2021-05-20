@@ -2,7 +2,7 @@ t = 0:31;
 f = 0:31;
 
 % NOTE: input range = (-32,32)
-x = 5*cos(t)+sin(5*t);
+x = 0.5 * t;
 x = round(x,3);
 y = zeros(1,32);
 
@@ -39,7 +39,7 @@ sgtitle('Matlab FFT');
 %}
 
 
-dlmwrite('input_10.txt',x,'\n');
+dlmwrite('input_8.txt',x,'\n');
 %dlmwrite('output_real_2.txt',real(y),'\n');
 %dlmwrite('output_imag_2.txt',imag(y),'\n');
 
