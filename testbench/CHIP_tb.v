@@ -77,6 +77,42 @@ module CHIP_tb;
         end
     `endif
 
+    `ifdef T6
+        initial	begin
+            $readmemb ("input_6.txt",  before_ff);
+            $readmemb ("golden_6.txt",  after_ff);
+        end
+    `endif
+
+    `ifdef T7
+        initial	begin
+            $readmemb ("input_7.txt",  before_ff);
+            $readmemb ("golden_7.txt",  after_ff);
+        end
+    `endif
+
+    `ifdef T8
+        initial	begin
+            $readmemb ("input_8.txt",  before_ff);
+            $readmemb ("golden_8.txt",  after_ff);
+        end
+    `endif
+
+
+    `ifdef T9
+        initial	begin
+            $readmemb ("input_9.txt",  before_ff);
+            $readmemb ("golden_9.txt",  after_ff);
+        end
+    `endif
+
+    `ifdef T10
+        initial	begin
+            $readmemb ("input_10.txt",  before_ff);
+            $readmemb ("golden_10.txt",  after_ff);
+        end
+    `endif
+
     initial begin
         f = $fopen("fft_o.txt","w");
         clk         = 1'b1;
