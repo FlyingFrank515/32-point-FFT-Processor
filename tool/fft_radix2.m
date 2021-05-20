@@ -2,7 +2,7 @@ t = 0:31;
 f = 0:31;
 
 % NOTE: input range = (-32,32)
-x = cos(4*t);
+x = 5*cos(t)+sin(5*t);
 x = round(x,3);
 y = zeros(1,32);
 
@@ -13,6 +13,7 @@ end
 
 y = round(y,3);
 
+%{
 figure;
 subplot(2,1,1);
 plot(f,real(y));
@@ -21,10 +22,12 @@ subplot(2,1,2);
 plot(f,imag(y));
 title('Imaginary Part');
 sgtitle('Radix-II FFT');
+%}
 
 % matlab fft
 X = fft(x);
 
+%{
 figure;
 subplot(2,1,1);
 plot(f,real(X));
@@ -33,11 +36,12 @@ subplot(2,1,2);
 plot(f,imag(X));
 title('Imaginary Part');
 sgtitle('Matlab FFT');
+%}
 
 
-dlmwrite('input_1.txt',x,'\n');
-dlmwrite('output_real_1.txt',real(y),'\n');
-dlmwrite('output_imag_1.txt',imag(y),'\n');
+dlmwrite('input_10.txt',x,'\n');
+%dlmwrite('output_real_2.txt',real(y),'\n');
+%dlmwrite('output_imag_2.txt',imag(y),'\n');
 
 function y = dft_2(x,k)
     y = x(1) * exp(-1i * 2 * pi * k * 0 / 2) + x(2) * exp(-1i * 2 * pi * k * 1 / 2);
