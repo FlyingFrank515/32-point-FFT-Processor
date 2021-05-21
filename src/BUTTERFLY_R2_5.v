@@ -53,8 +53,8 @@ module BUTTERFLY_R2_5(
             // Also, subtract the delayed-data from input data and 
             // let it delay for N/2 cycle (send it to shift register)
             FIRST: begin
-                out_r = $signed({A_r[16], A_r[16:1]}) + B_r[17:1];
-                out_i = $signed({A_i[16], A_i[16:1]}) + B_i[17:1];
+                out_r = $signed({A_r[16], A_r}) + B_r[17:0];
+                out_i = $signed({A_i[16], A_i}) + B_i[17:0];
                 SR_r = B_r - $signed({A_r[16], A_r}); // B:from delay, A: from input
                 SR_i = B_i - $signed({A_i[16], A_i});
             end
@@ -62,8 +62,8 @@ module BUTTERFLY_R2_5(
             // In second state, multiply delayed-data (h1~hN) with corresponding W (
             // W^0~W^(N-1)/2 and output it
             SECOND: begin
-                out_r = B_r[17:1];
-                out_i = B_i[17:1];
+                out_r = B_r[16:0];
+                out_i = B_i[16:0];
                 SR_r = {A_r[16], A_r};
                 SR_i = {A_i[16], A_i};
             end

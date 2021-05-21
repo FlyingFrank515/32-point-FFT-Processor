@@ -1,6 +1,7 @@
 t = 0:31;
 f = 0:31;
 
+<<<<<<< HEAD
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % input_1 :10sin4t                 
 % input_2 : 
@@ -16,6 +17,23 @@ f = 0:31;
 
 % NOTE: input range = (-32,32)
 x = 10*sin(4*t);
+=======
+% =================================
+% input1: cos(4*t)
+% input2: 10*sin(4*t)
+% input3: 5*sin(4*t)
+% input4: sin(4*t)
+% input5: rectangularPulse(8,23,t)
+% input6: triangularPulse(8,23,t)
+% input7: heaviside(t-16)
+% input8: 0.5*t 
+% input9: sin(2*t)+sin(4*t)+sin(6*t)
+% input10: 5*cos(t)+sin(5*t)
+% =================================
+
+% NOTE: input range = (-16,16)
+x = 5*cos(t)+sin(5*t);
+>>>>>>> a7d05063e013326267d86cd945fe0db9cc0c4af9
 x = round(x,3);
 y = zeros(1,32);
 
@@ -27,17 +45,23 @@ end
 y = round(y,3);
 
 figure;
-subplot(2,1,1);
+%subplot(3,1,1)
+plot(t, x);
+title('Time domain');
+%subplot(3,1,2);
+figure;
 plot(f,real(y));
 title('Real Part');
-subplot(2,1,2);
+%subplot(3,1,3);
+figure;
 plot(f,imag(y));
 title('Imaginary Part');
-sgtitle('Radix-II FFT');
+%sgtitle('Radix-II FFT');
 
 % matlab fft
 X = fft(x);
 
+%{
 figure;
 subplot(2,1,1);
 plot(f,real(X));
@@ -46,11 +70,12 @@ subplot(2,1,2);
 plot(f,imag(X));
 title('Imaginary Part');
 sgtitle('Matlab FFT');
+%}
 
 
-dlmwrite('input_1.txt',x,'\n');
-dlmwrite('output_real_1.txt',real(y),'\n');
-dlmwrite('output_imag_1.txt',imag(y),'\n');
+%dlmwrite('input_8.txt',x,'\n');
+%dlmwrite('output_real_2.txt',real(y),'\n');
+%dlmwrite('output_imag_2.txt',imag(y),'\n');
 
 function y = dft_2(x,k)
     y = x(1) * exp(-1i * 2 * pi * k * 0 / 2) + x(2) * exp(-1i * 2 * pi * k * 1 / 2);
