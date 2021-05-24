@@ -1,0 +1,82 @@
+###################################################################
+
+# Created by write_sdc on Sun May 23 20:20:02 2021
+
+###################################################################
+set sdc_version 2.0
+
+set_units -time ns -resistance kOhm -capacitance pF -voltage V -current mA
+set_operating_conditions -max WCCOM -max_library                               \
+fsa0m_a_generic_core_ss1p62v125c\
+                         -min BCCOM -min_library                               \
+fsa0m_a_generic_core_ff1p98vm40c
+set_wire_load_model -name G200K -library fsa0m_a_generic_core_tt1p8v25c
+set_max_fanout 6 [current_design]
+set_max_area 0
+set_load -pin_load 1 [get_ports finish]
+set_load -pin_load 1 [get_ports {answer[16]}]
+set_load -pin_load 1 [get_ports {answer[15]}]
+set_load -pin_load 1 [get_ports {answer[14]}]
+set_load -pin_load 1 [get_ports {answer[13]}]
+set_load -pin_load 1 [get_ports {answer[12]}]
+set_load -pin_load 1 [get_ports {answer[11]}]
+set_load -pin_load 1 [get_ports {answer[10]}]
+set_load -pin_load 1 [get_ports {answer[9]}]
+set_load -pin_load 1 [get_ports {answer[8]}]
+set_load -pin_load 1 [get_ports {answer[7]}]
+set_load -pin_load 1 [get_ports {answer[6]}]
+set_load -pin_load 1 [get_ports {answer[5]}]
+set_load -pin_load 1 [get_ports {answer[4]}]
+set_load -pin_load 1 [get_ports {answer[3]}]
+set_load -pin_load 1 [get_ports {answer[2]}]
+set_load -pin_load 1 [get_ports {answer[1]}]
+set_load -pin_load 1 [get_ports {answer[0]}]
+create_clock [get_ports clk]  -period 10  -waveform {0 5}
+set_clock_latency 0.5  [get_clocks clk]
+set_clock_uncertainty 0.1  [get_clocks clk]
+set_input_delay -clock clk  -max 1  [get_ports clk]
+set_input_delay -clock clk  -max 1  [get_ports rst_n]
+set_input_delay -clock clk  -max 1  [get_ports valid_i]
+set_input_delay -clock clk  -max 1  [get_ports {x_r[10]}]
+set_input_delay -clock clk  -max 1  [get_ports {x_r[9]}]
+set_input_delay -clock clk  -max 1  [get_ports {x_r[8]}]
+set_input_delay -clock clk  -max 1  [get_ports {x_r[7]}]
+set_input_delay -clock clk  -max 1  [get_ports {x_r[6]}]
+set_input_delay -clock clk  -max 1  [get_ports {x_r[5]}]
+set_input_delay -clock clk  -max 1  [get_ports {x_r[4]}]
+set_input_delay -clock clk  -max 1  [get_ports {x_r[3]}]
+set_input_delay -clock clk  -max 1  [get_ports {x_r[2]}]
+set_input_delay -clock clk  -max 1  [get_ports {x_r[1]}]
+set_input_delay -clock clk  -max 1  [get_ports {x_r[0]}]
+set_output_delay -clock clk  -min 0.5  [get_ports finish]
+set_output_delay -clock clk  -min 0.5  [get_ports {answer[16]}]
+set_output_delay -clock clk  -min 0.5  [get_ports {answer[15]}]
+set_output_delay -clock clk  -min 0.5  [get_ports {answer[14]}]
+set_output_delay -clock clk  -min 0.5  [get_ports {answer[13]}]
+set_output_delay -clock clk  -min 0.5  [get_ports {answer[12]}]
+set_output_delay -clock clk  -min 0.5  [get_ports {answer[11]}]
+set_output_delay -clock clk  -min 0.5  [get_ports {answer[10]}]
+set_output_delay -clock clk  -min 0.5  [get_ports {answer[9]}]
+set_output_delay -clock clk  -min 0.5  [get_ports {answer[8]}]
+set_output_delay -clock clk  -min 0.5  [get_ports {answer[7]}]
+set_output_delay -clock clk  -min 0.5  [get_ports {answer[6]}]
+set_output_delay -clock clk  -min 0.5  [get_ports {answer[5]}]
+set_output_delay -clock clk  -min 0.5  [get_ports {answer[4]}]
+set_output_delay -clock clk  -min 0.5  [get_ports {answer[3]}]
+set_output_delay -clock clk  -min 0.5  [get_ports {answer[2]}]
+set_output_delay -clock clk  -min 0.5  [get_ports {answer[1]}]
+set_output_delay -clock clk  -min 0.5  [get_ports {answer[0]}]
+set_drive 1  [get_ports clk]
+set_drive 1  [get_ports rst_n]
+set_drive 1  [get_ports valid_i]
+set_drive 1  [get_ports {x_r[10]}]
+set_drive 1  [get_ports {x_r[9]}]
+set_drive 1  [get_ports {x_r[8]}]
+set_drive 1  [get_ports {x_r[7]}]
+set_drive 1  [get_ports {x_r[6]}]
+set_drive 1  [get_ports {x_r[5]}]
+set_drive 1  [get_ports {x_r[4]}]
+set_drive 1  [get_ports {x_r[3]}]
+set_drive 1  [get_ports {x_r[2]}]
+set_drive 1  [get_ports {x_r[1]}]
+set_drive 1  [get_ports {x_r[0]}]
