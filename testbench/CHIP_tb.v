@@ -13,6 +13,8 @@
     `define SDFFILE "FFT_syn.sdf"
 `endif
 
+`define SDFFILE  "./FFT.sdf"	// sdf file
+
 // simulation (you can adjust the T to change the test data)
 // RTL: ncverilog CHIP_tb.v +define+RTL +define+T1 +access+r
 // SYN: ncverilog CHIP_tb.v fsa0m_a_generic_core_21.lib.src +define+SYN +define+T1 +access+r
