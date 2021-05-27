@@ -17234,39 +17234,56 @@ module FFT ( clk, rst_n, valid_i, x_r, finish, answer );
   BUF1CK U3 ( .I(rst_n), .O(n3) );
   BUF1CK U4 ( .I(rst_n), .O(n1) );
   TIE0 U5 ( .O(n_logic0 ) );
-  TIE1 U6 ( .O(n_logic1 ) );
-  XMD ipad_clk (.O(clk), .I(clk), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
-  XMD ipad_rst_n (.O(rst_n), .I(rst_n), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
-  XMD ipad_valid_i (.O(valid_i), .I(valid_i), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
-  XMD ipad_x_r_0 (.O(x_r[0]), .I(x_r[0]), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
-  XMD ipad_x_r_1 (.O(x_r[1]), .I(x_r[1]), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
-  XMD ipad_x_r_2 (.O(x_r[2]), .I(x_r[2]), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
-  XMD ipad_x_r_3 (.O(x_r[3]), .I(x_r[3]), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
-  XMD ipad_x_r_4 (.O(x_r[4]), .I(x_r[4]), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
-  XMD ipad_x_r_5 (.O(x_r[5]), .I(x_r[5]), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
-  XMD ipad_x_r_6 (.O(x_r[6]), .I(x_r[6]), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
-  XMD ipad_x_r_7 (.O(x_r[7]), .I(x_r[7]), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
-  XMD ipad_x_r_8 (.O(x_r[8]), .I(x_r[8]), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
-  XMD ipad_x_r_9 (.O(x_r[9]), .I(x_r[9]), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
-  XMD ipad_x_r_10 (.O(x_r[10]), .I(x_r[10]), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
-  YA2GSD ipad_finish (.O(finish), .I(finish), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
-  YA2GSD ipad_answer_0 (.O(answer[0]), .I(answer[0]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
-  YA2GSD ipad_answer_1 (.O(answer[1]), .I(answer[1]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
-  YA2GSD ipad_answer_2 (.O(answer[2]), .I(answer[2]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
-  YA2GSD ipad_answer_3 (.O(answer[3]), .I(answer[3]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
-  YA2GSD ipad_answer_4 (.O(answer[4]), .I(answer[4]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
-  YA2GSD ipad_answer_5 (.O(answer[5]), .I(answer[5]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
-  YA2GSD ipad_answer_6 (.O(answer[6]), .I(answer[6]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
-  YA2GSD ipad_answer_7 (.O(answer[7]), .I(answer[7]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
-  YA2GSD ipad_answer_8 (.O(answer[8]), .I(answer[8]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
-  YA2GSD ipad_answer_9 (.O(answer[9]), .I(answer[9]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
-  YA2GSD ipad_answer_10 (.O(answer[10]), .I(answer[10]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
-  YA2GSD ipad_answer_11 (.O(answer[11]), .I(answer[11]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
-  YA2GSD ipad_answer_12 (.O(answer[12]), .I(answer[12]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
-  YA2GSD ipad_answer_13 (.O(answer[13]), .I(answer[13]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
-  YA2GSD ipad_answer_14 (.O(answer[14]), .I(answer[14]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
-  YA2GSD ipad_answer_15 (.O(answer[15]), .I(answer[15]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
-  YA2GSD ipad_answer_16 (.O(answer[16]), .I(answer[16]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
+  
 
 endmodule
 
+
+module CHIP ( clk, rst_n, valid_i, x_r, finish, answer );
+  input [10:0] x_r;
+  output [16:0] answer;
+  input clk, rst_n, valid_i;
+  output finish;
+  wire   n_logic0, n_logic1;
+  wire   i_clk, i_rst_n, i_valid_i, i_finish;
+  wire   [10:0] i_x_r;
+  wire   [16:0] i_answer;
+
+  FFT FFT_in( .clk(i_clk), .rst_n(i_rst_n), .valid_i(i_valid_i), .x_r(i_x_r), .finish(i_finish), .answer(i_answer) );
+  
+  TIE0 U5 (.O(n_logic0));
+  TIE1 U6 ( .O(n_logic1 ) );
+  XMD ipad_clk (.O(i_clk), .I(clk), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
+  XMD ipad_rst_n (.O(i_rst_n), .I(rst_n), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
+  XMD ipad_valid_i (.O(i_valid_i), .I(valid_i), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
+  XMD ipad_x_r_0 (.O(i_x_r[0]), .I(x_r[0]), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
+  XMD ipad_x_r_1 (.O(i_x_r[1]), .I(x_r[1]), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
+  XMD ipad_x_r_2 (.O(i_x_r[2]), .I(x_r[2]), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
+  XMD ipad_x_r_3 (.O(i_x_r[3]), .I(x_r[3]), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
+  XMD ipad_x_r_4 (.O(i_x_r[4]), .I(x_r[4]), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
+  XMD ipad_x_r_5 (.O(i_x_r[5]), .I(x_r[5]), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
+  XMD ipad_x_r_6 (.O(i_x_r[6]), .I(x_r[6]), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
+  XMD ipad_x_r_7 (.O(i_x_r[7]), .I(x_r[7]), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
+  XMD ipad_x_r_8 (.O(i_x_r[8]), .I(x_r[8]), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
+  XMD ipad_x_r_9 (.O(i_x_r[9]), .I(x_r[9]), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
+  XMD ipad_x_r_10 (.O(i_x_r[10]), .I(x_r[10]), .PU(n_logic0), .PD(n_logic0), .SMT(n_logic0) );
+  YA2GSD ipad_finish (.O(finish), .I(i_finish), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
+  YA2GSD ipad_answer_0 (.O(answer[0]), .I(i_answer[0]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
+  YA2GSD ipad_answer_1 (.O(answer[1]), .I(i_answer[1]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
+  YA2GSD ipad_answer_2 (.O(answer[2]), .I(i_answer[2]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
+  YA2GSD ipad_answer_3 (.O(answer[3]), .I(i_answer[3]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
+  YA2GSD ipad_answer_4 (.O(answer[4]), .I(i_answer[4]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
+  YA2GSD ipad_answer_5 (.O(answer[5]), .I(i_answer[5]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
+  YA2GSD ipad_answer_6 (.O(answer[6]), .I(i_answer[6]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
+  YA2GSD ipad_answer_7 (.O(answer[7]), .I(i_answer[7]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
+  YA2GSD ipad_answer_8 (.O(answer[8]), .I(i_answer[8]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
+  YA2GSD ipad_answer_9 (.O(answer[9]), .I(i_answer[9]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
+  YA2GSD ipad_answer_10 (.O(answer[10]), .I(i_answer[10]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
+  YA2GSD ipad_answer_11 (.O(answer[11]), .I(i_answer[11]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
+  YA2GSD ipad_answer_12 (.O(answer[12]), .I(i_answer[12]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
+  YA2GSD ipad_answer_13 (.O(answer[13]), .I(i_answer[13]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
+  YA2GSD ipad_answer_14 (.O(answer[14]), .I(i_answer[14]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
+  YA2GSD ipad_answer_15 (.O(answer[15]), .I(i_answer[15]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
+  YA2GSD ipad_answer_16 (.O(answer[16]), .I(i_answer[16]), .E(n_logic1), .E2(n_logic0), .E4(n_logic0), .E8(n_logic0), .SR(n_logic0) );
+  
+endmodule
