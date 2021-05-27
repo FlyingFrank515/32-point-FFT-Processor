@@ -13,9 +13,16 @@
     `define SDFFILE "FFT_syn.sdf"
 `endif
 
+`ifdef APR
+    `include "FFT_apr.v"
+    `define SDF
+    `define SDFFILE  "./FFT.sdf"	// sdf file
+`endif
+
 // simulation (you can adjust the T to change the test data)
-// RTL: ncverilog CHIP_tb.v +define+RTL +define+T1 +access+r
-// SYN: ncverilog CHIP_tb.v fsa0m_a_generic_core_21.lib.src +define+SYN +define+T1 +access+r
+// RTL: ncverilog CHIP_tb.v +define+RTL+T1 +access+r
+// SYN: ncverilog CHIP_tb.v +define+SYN+T1 fsa0m_a_generic_core_21.lib.src +access+r
+// APR: ncverilog CHIP_tb.v +define+APR+T1  -v fsa0m_a_generic_core_21.lib.src fsa0m_a_t33_generic_io_21.lib.src
 
 
 module CHIP_tb;
@@ -39,7 +46,7 @@ module CHIP_tb;
     );   
 
     `ifdef SDF
-    initial $sdf_annotate(`SDFFILE, chip0);
+        initial $sdf_annotate(`SDFFILE, chip0);
     `endif
     
     `ifdef T1
