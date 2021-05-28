@@ -14,15 +14,15 @@
 `endif
 
 `ifdef APR
-    `include "FFT_apr.v"
+    `include "CHIP.v"
     `define SDF
-    `define SDFFILE  "./FFT.sdf"	// sdf file
+    `define SDFFILE  "CHIP.sdf"	// sdf file
 `endif
 
 // simulation (you can adjust the T to change the test data)
 // RTL: ncverilog CHIP_tb.v +define+RTL+T1 +access+r
 // SYN: ncverilog CHIP_tb.v +define+SYN+T1 fsa0m_a_generic_core_21.lib.src +access+r
-// APR: ncverilog CHIP_tb.v +define+APR+T1  -v fsa0m_a_generic_core_21.lib.src fsa0m_a_t33_generic_io_21.lib.src
+// APR: ncverilog CHIP_tb.v +define+APR+T1  -v fsa0m_a_generic_core_21.lib.src fsa0m_a_t33_generic_io_21.lib.src +access+r
 
 
 module CHIP_tb;
