@@ -16,7 +16,7 @@
 `ifdef APR
     `include "FFT_apr.v"
     `define SDF
-    `define SDFFILE  "./FFT.sdf"	// sdf file
+    `define SDFFILE  "FFT.sdf"	// sdf file
 `endif
 
 // simulation (you can adjust the T to change the test data)
