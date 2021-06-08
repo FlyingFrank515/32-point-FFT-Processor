@@ -14,9 +14,9 @@
 `endif
 
 `ifdef APR
-    `include "FFT_apr.v"
+    `include "CHIP.v"
     `define SDF
-    `define SDFFILE  "FFT.sdf"	// sdf file
+    `define SDFFILE  "CHIP.sdf"	// sdf file
 `endif
 
 // simulation (you can adjust the T to change the test data)
