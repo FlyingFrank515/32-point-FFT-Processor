@@ -141,6 +141,11 @@ module CHIP_tb;
         $fsdbDumpvars(0, CHIP_tb, "+mda");
     end
 
+    initial begin
+        $dumpfile("CHIP.vcd");
+        $dumpvars();
+    end
+
     initial #(`TIME_OUT) begin
         $display("Time_out! AAAAAA");
         $display("⠄⠄⠄⠄⠄⠄⠄⠈⠉⠁⠈⠉⠉⠙⠿⣿⣿⣿⣿⣿");
