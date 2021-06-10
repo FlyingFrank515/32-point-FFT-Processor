@@ -22,7 +22,7 @@
 // simulation (you can adjust the T to change the test data)
 // RTL: ncverilog CHIP_tb.v +define+RTL+T1 +access+r
 // SYN: ncverilog CHIP_tb.v +define+SYN+T1 fsa0m_a_generic_core_21.lib.src +access+r
-// APR: ncverilog CHIP_tb.v +define+APR+T1  -v fsa0m_a_generic_core_21.lib.src fsa0m_a_t33_generic_io_21.lib.src
+// APR: ncverilog CHIP_tb.v +define+APR+T1  -v fsa0m_a_generic_core_21.lib.src fsa0m_a_t33_generic_io_21.lib.src +access+r
 
 
 module CHIP_tb;
@@ -35,7 +35,11 @@ module CHIP_tb;
     wire [16:0] data_out;
     wire finish;
 
-    FFT chip0(
+    
+    // remember to modify the reference here
+    // RTL SYN: FFT chip0(...
+    // APR    : CHIP chip0(...
+    CHIP chip0(
         .clk(clk),
         .rst_n(rst_n),
         .valid_i(valid),
